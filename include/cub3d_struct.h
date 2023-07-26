@@ -1,6 +1,8 @@
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
 
+# include "cub3d.h"
+
 typedef struct s_texture
 {
 	int	north;

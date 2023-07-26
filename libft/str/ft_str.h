@@ -6,7 +6,7 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:09:11 by nminotte          #+#    #+#             */
-/*   Updated: 2023/02/14 12:11:43 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:49:42 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ size_t	ft_strlen(const char *str);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 
+void	ft_freestrs(char **str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 char	*ft_strnstr(const char *big, const char *little, size_t len);

@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-int	check_extension(char *extension)
+static int	check_extension(char *extension)
 {
 	int	i;
 
@@ -19,6 +19,8 @@ int	check_extension(char *extension)
 
 int	parsing(char *file, t_texture *texture, t_map *map)
 {
+	int ret_text;
+
 	if (check_extension(file))
 		return (1);
 	map = malloc(sizeof(t_map) * 2);
@@ -28,14 +30,11 @@ int	parsing(char *file, t_texture *texture, t_map *map)
 		ft_putendl_fd("error", 2);
 		return (1);
 	}
-	(void)texture;
-	(void)map;
-//	if open map;
-//	init struct_
-	// if(parse_texture(map))
-		// close_map(map);
-	// if (parse_map(map))
-		// close_map(map);
+	ret_text = parse_texture(texture, map->fd_map);
+	if (ret_text == 1)
+		close_map(map);
+	if (parse_map(map, ret_text))
+		close_map(map);
 	close(map->fd_map);
 	return (0);
 }

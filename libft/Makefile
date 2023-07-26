@@ -6,7 +6,7 @@
 #    By: nminotte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 14:00:01 by nminotte          #+#    #+#              #
-#    Updated: 2023/02/17 11:33:26 by nminotte         ###   ########.fr        #
+#    Updated: 2023/07/26 17:42:36 by nminotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC = $(CONV)/ft_atoi.c \
 	$(STR)/ft_strrchr_pipex.c \
 	$(STR)/ft_strtrim.c \
 	$(STR)/ft_substr.c \
+	$(STR)/ft_freestrs.c \
 	$(TSTR)/ft_isalnum.c \
 	$(TSTR)/ft_isalpha.c \
 	$(TSTR)/ft_isascii.c \

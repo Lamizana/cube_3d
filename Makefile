@@ -1,12 +1,29 @@
 NAME = cub3D 
 
-SRC = src/main.c\
-	  src/parsing/parsing.c\
-	  src/parsing/parse_texture.c\
+############ SOURCE #########################
+
+INIT :=	\
+
+
+PARSING :=	src/parsing/parsing.c\
+		src/parsing/parse_texture.c\
+		
+EXIT_CLEAR :=	src/exit_clear/close_map.c\
+		
+
+SRC = src/main.c	\
+	${INIT}		\
+	${PARSING}	\
+	${EXIT_CLEAR}	\
+
+
+############ FLAGS #########################
 
 FLAG = -Wall -Werror -Wextra -g
 
 OBJ = $(SRC:.c=.o)
+
+############ colors #########################
 
 RED		= \033[38;5;9m
 GREEN	= \033[38;5;76m

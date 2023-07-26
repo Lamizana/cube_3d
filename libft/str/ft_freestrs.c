@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_freestrs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 11:29:39 by nminotte          #+#    #+#             */
-/*   Updated: 2023/07/26 17:48:36 by nminotte         ###   ########.fr       */
+/*   Created: 2023/07/26 17:37:05 by nminotte          #+#    #+#             */
+/*   Updated: 2023/07/26 17:54:12 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_str.h"
 
-#ifndef LIBFT_H
-# define LIBFT_H
+void	ft_freestrs(char **str)
+{
+	int	i;
 
-# include <stdlib.h>
-# include <unistd.h>
-
-# include "convert/ft_convert.h"
-# include "gnl/ft_gnl.h"
-# include "lst/ft_lst.h"
-# include "mem/ft_mem.h"
-# include "print/ft_printf.h"
-# include "str/ft_str.h"
-# include "test_str/ft_test.h"
-# include "stack/ft_stack.h"
-
-#endif
+	i = 0;
+	while (str && str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	if (str)
+		free(str);
+}
