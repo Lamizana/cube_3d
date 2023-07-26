@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 		return(1);
 	}
 
-	if (parsing(argv[1], &texture, &map))
+	if (parsing(argv[1], texture, map) == 1)
 		return (1);
 	return (0);
 }

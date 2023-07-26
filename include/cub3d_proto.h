@@ -2,6 +2,7 @@
 # define CUB3D_PROTO_H
 
 # include "cub3d.h"
+# include "cub3d_struct.h"
 
 /*          PARSING                */
 
