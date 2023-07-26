@@ -1,3 +1,6 @@
-#include "cub3d_struct.h"
+#include "../../include/cub3d.h"
 
-int	parse_texture(char *argv)
+int	parse_texture(char *argv, t_texture *texture)
+{
+	return (0);
+}

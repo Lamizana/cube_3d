@@ -14,7 +14,8 @@ int	main(int argc, char **argv)
 		printf("error\n");
 		return(1);
 	}
-	(void) argv;
-//	parsing(argv[1], &texture, &map);
+
+	if (parsing(argv[1], &texture, &map))
+		return (1);
 	return (0);
 }
