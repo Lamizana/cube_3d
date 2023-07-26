@@ -1,4 +1,4 @@
-NAME = cube_3d
+NAME = cub3D 
 
 SRC = src/main.c\
 	  src/parsing/parsing.c\
