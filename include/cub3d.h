@@ -2,7 +2,6 @@
 # define CUB3D_H
 
 # include <stdio.h>
-# include "../libft/libft.a"
 # include "cub3d_proto.h"
 # include "cub3d_define.h"
 # include "cub3d_struct.h"
