@@ -15,10 +15,12 @@ int	check_extension(char *extension)
 	return (1);
 }
 
-int	parsing(char *map, t_texture *texture, t_map *map)
+int	parsing(char *file, t_texture *texture, t_map *map)
 {
-	if (check_extension(map))
+	if (check_extension(file))
 		return (1);
+	(void)texture;
+	(void)map;
 //	if open map;
 //	init struct_
 	// if(parse_texture(map))
