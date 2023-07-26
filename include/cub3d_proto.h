@@ -3,6 +3,6 @@
 
 /*          PARSING                */
 
-int	parsing(char *map);
+int	parsing(char *map, t_texture *texture, t_map *map);
 
 #endif

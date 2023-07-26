@@ -1,3 +1,3 @@
 #include "cub3d_struct.h"
 
-int	main()
+int	parse_texture(char *argv)
