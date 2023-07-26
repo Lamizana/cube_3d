@@ -5,16 +5,17 @@ NAME = cub3D
 INIT :=	\
 
 
-PARSING :=	src/parsing/parsing.c\
-		src/parsing/parse_texture.c\
+PARSING :=		src/parsing/parsing.c		\
+				src/parsing/parse_texture.c	\
+				src/parsing/parse_map.c		\
 		
-EXIT_CLEAR :=	src/exit_clear/close_map.c\
+EXIT_CLEAR :=	src/exit_clear/close_map.c	\
 		
 
-SRC = src/main.c	\
-	${INIT}		\
-	${PARSING}	\
-	${EXIT_CLEAR}	\
+SRC = src/main.c		\
+		${INIT}			\
+		${PARSING}		\
+		${EXIT_CLEAR}	\
 
 
 ############ FLAGS #########################

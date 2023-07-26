@@ -1,4 +1,5 @@
 #include "../../include/cub3d.h"
+#include <stdlib.h>
 
 void	close_strucmap(t_map *map)
 {
@@ -28,4 +29,5 @@ void	close_map(t_texture *text, t_map *map)
 		close_texture(text);
 	if (map)
 		close_strucmap(map);
+	exit(1);
 }

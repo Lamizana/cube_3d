@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	map = NULL;
 	if (argc != 2)
 	{
-		printf("error\n");
+		ft_putendl_fd("Error\nPrecise your map, please", 2);
 		return (1);
 	}
 	if (parsing(argv[1], texture, map) == 1)

@@ -13,28 +13,27 @@ static int	check_extension(char *extension)
 			return (0);
 		i++;
 	}
-	ft_putendl_fd("error", 2);
+	ft_putendl_fd("Error\nThe extension is incorrect and should be .cub", 2);
 	return (1);
 }
 
 int	parsing(char *file, t_texture *texture, t_map *map)
 {
-	int ret_text;
+	int	ret_text;
 
 	if (check_extension(file))
 		return (1);
-	map = malloc(sizeof(t_map) * 2);
+	map = ft_calloc(1, sizeof(t_map));
 	map->fd_map = open(file, O_RDONLY);
 	if (map->fd_map < 0)
 	{
-		ft_putendl_fd("error", 2);
+		ft_putendl_fd("Error\nYour map can't open", 2);
 		return (1);
 	}
 	ret_text = parse_texture(texture, map->fd_map);
 	if (ret_text == 1)
-		close_map(map);
-	if (parse_map(map, ret_text))
-		close_map(map);
-	close(map->fd_map);
+		close_map(texture, map);
+	if (parse_map(map))
+		close_map(texture, map);
 	return (0);
 }

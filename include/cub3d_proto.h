@@ -7,6 +7,7 @@
 
 int		parsing(char *file, t_texture *texture, t_map *map);
 int		parse_texture(t_texture *texture, int fd_map);
+int		parse_map(t_map *map);
 
 /*				close and exit				*/
 
