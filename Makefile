@@ -1,6 +1,8 @@
 NAME = cube_3d
 
-SRC = src/main.c
+SRC = src/main.c\
+	  src/parsing/parsing.c\
+	  src/parsing/parse_texture.c\
 
 FLAG = -Wall -Werror -Wextra -g
 
