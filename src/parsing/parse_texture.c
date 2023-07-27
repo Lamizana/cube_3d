@@ -110,7 +110,6 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 		free(line);
 		nb++;
 	}
-	printf("%d\n", *nb_line);
-	printf("%d\n", nb);
+	close(fd_map);
 	return (nb);
 }

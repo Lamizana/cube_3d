@@ -8,11 +8,11 @@ int	parse_fill_check(t_map *map, char *line, int index)
 	i = 0;
 	while (line[i])
 	{
-		if (!(ft_char_in_set(line[i], "01WESN \n\t")))
+		if (!(ft_char_in_set(line[i], "01WESN \n")))
 		{
-			ft_putendl_fd("Error", 2);
+			ft_putstr_fd("Error\n\"", 2);
 			ft_putchar_fd(line[i], 2);
-			ft_putendl_fd(" is not a valid char", 2);
+			ft_putendl_fd("\" is not a valid char", 2);
 			return (1);
 		}
 		i++;
@@ -55,6 +55,5 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		free(line);
 		i++;
 	}
-	map->map[i - l_to_start] = NULL;
 	return (check);
 }

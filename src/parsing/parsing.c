@@ -17,25 +17,34 @@ static int	check_extension(char *extension)
 	return (1);
 }
 
-int	parsing(char *file, t_texture *texture, t_map *map)
+int	open_map(char *file, t_map *map)
 {
-	int	ret_text;
-	int	nb_line;
-
-	nb_line = 0;
-	if (check_extension(file))
-		return (1);
 	map->fd_map = open(file, O_RDONLY);
 	if (map->fd_map < 0)
 	{
 		ft_putendl_fd("Error\nYour map can't open", 2);
 		return (1);
 	}
-	// ret_text = parse_texture(texture, map->fd_map, &nb_line);
-	// if (ret_text == 1)
-		// close_map(texture, map);
-	ret_text = 6;
-	nb_line = 20;
+	return (0);
+}
+
+int	parsing(char *file, t_texture *texture, t_map *map)
+{
+	int	ret_text;
+	int	nb_line;
+
+	ret_text = 0;
+	if (check_extension(file))
+		return (1);
+	if (open_map(file, map))
+		return (1);
+	nb_line = parse_texture(texture, map->fd_map, &ret_text);
+	if (ret_text == 1)
+		close_map(texture, map);
+	printf("ret_text %d\n", ret_text);
+	printf("nb line %d\n", nb_line);
+	if (open_map(file, map))
+		return (1);
 	if (parse_map(map, ret_text, nb_line))
 		close_map(texture, map);
 	return (0);
