@@ -1,5 +1,4 @@
 #include "../../include/cub3d.h"
-#include <stdlib.h>
 
 void	close_strucmap(t_map *map)
 {

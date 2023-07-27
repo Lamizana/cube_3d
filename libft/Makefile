@@ -6,7 +6,7 @@
 #    By: nminotte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 14:00:01 by nminotte          #+#    #+#              #
-#    Updated: 2023/07/26 17:42:36 by nminotte         ###   ########.fr        #
+#    Updated: 2023/07/27 13:42:21 by nminotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRC = $(CONV)/ft_atoi.c \
 	$(TSTR)/ft_isdigit.c \
 	$(TSTR)/ft_isprint.c \
 	$(TSTR)/ft_to_find.c \
+	$(TSTR)/ft_char_in_set.c \
 
 OBJS = $(SRC:.c=.o)
 

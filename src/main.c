@@ -6,13 +6,18 @@ int	main(int argc, char **argv)
 	t_map		*map;
 
 	texture = NULL;
-	map = NULL;
+	map = ft_calloc(1, sizeof(t_map));
 	if (argc != 2)
 	{
 		ft_putendl_fd("Error\nPrecise your map, please", 2);
+		close_map(texture, map);
 		return (1);
 	}
 	if (parsing(argv[1], texture, map) == 1)
+	{
+		close_map(texture, map);
 		return (1);
+	}
+	close_map(texture, map);
 	return (0);
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.h                                          :+:      :+:    :+:   */
+/*   ft_char_in_set.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 17:40:11 by nminotte          #+#    #+#             */
-/*   Updated: 2023/07/27 13:42:42 by nminotte         ###   ########.fr       */
+/*   Created: 2023/07/27 13:13:26 by nminotte          #+#    #+#             */
+/*   Updated: 2023/07/27 13:41:33 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_test.h"
 
-#ifndef FT_TEST_H
-# define FT_TEST_H
+int	ft_char_in_set(char c, char *str)
+{
+	int	i;
 
-# include "../libft.h"
-
-int	ft_isalnum(int c);
-int	ft_isprint(int c);
-int	ft_isdigit(int c);
-int	ft_isascii(int c);
-int	ft_isalpha(int c);
-int	ft_strcmp_str(char *s1, char *s2);
-int	ft_char_in_set(char c, char *str);
-
-#endif
+	i = 0;
+	while (str && str[i])
+	{
+		if (c == str[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
