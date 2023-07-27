@@ -13,7 +13,10 @@ static	int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
 
 	}
 	else
+	{
+		ft_putstr_fd("Error\nImpossible d'ouvrir le fichier texture en lecture\n", 2);
 		return (1);
+	}
 	return (0);
 }
 
@@ -83,24 +86,31 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 {
 	char	*line;
 	int		check;
+	int		nb;
 	int		nb_texture;
 
 	check = 0;
+	nb = 0;
 	nb_texture = 0;
-	while (nb_texture < 7)
+	while (1)
 	{
 		line = get_next_line(fd_map);
 		if (line == NULL)
 			break ;
-		if (!check)
+		if  (!check && nb_texture < 7)
 		{
 			if (check_texture(texture, line) == 1)
 				check = 1;
 			else
+			{
+				*nb_line += 1;
 				nb_texture++;
+			}
 		}
 		free(line);
-		*nb_line += 1;
+		nb++;
 	}
-	return (*nb_line);
+	printf("%d\n", *nb_line);
+	printf("%d\n", nb);
+	return (nb);
 }
