@@ -8,7 +8,7 @@
 // 
 static	int	check_direction(t_texture *texture, char **cmds, int i)
 {
-	printf("%s\n", cmds[i]);
+	printf("%s\n", cmds[i +1]);
 	if (cmds[i + 1] == NULL)
 	{
 		ft_freestrs(cmds);
@@ -16,15 +16,15 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 		return (1);
 	}
 	if (ft_strncmp(cmds[i], "NO\0", 3) == 0)
-		texture->north = open(cmds[i + 1], O_RDONLY);
+		texture->north_fd = open(cmds[i + 1], O_RDONLY);
 	else if (ft_strncmp(cmds[i], "SO\0", 3) == 0)
-		texture->south = open(cmds[i + 1], O_RDONLY);
+		texture->south_fd = open(cmds[i + 1], O_RDONLY);
 	else if (ft_strncmp(cmds[i], "WE\0", 3) == 0)
-		texture->west = open(cmds[i + 1], O_RDONLY);
+		texture->west_fd = open(cmds[i + 1], O_RDONLY);
 	else if (ft_strncmp(cmds[i], "EA\0", 3) == 0)
-		texture->east = open(cmds[i + 1], O_RDONLY);
-	if (texture->north == -1 || texture->south == -1
-		|| texture->west == -1 || texture->east == -1)
+		texture->east_fd = open(cmds[i + 1], O_RDONLY);
+	if (texture->north_fd == -1 || texture->south_fd == -1
+		|| texture->west_fd == -1 || texture->east_fd == -1)
 	{
 		ft_freestrs(cmds);
 		ft_putstr_fd("Error\nImpossible d'ouvrir le fichier texture en lecture\n", 2);
@@ -74,10 +74,6 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 	int		check;
 
 	check = 0;
-	texture->north = 0;
-	texture->south = 0;
-	texture->west = 0;
-	texture->east = 0;
 	while (1)
 	{
 		line = get_next_line(fd_map);

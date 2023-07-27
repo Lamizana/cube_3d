@@ -9,6 +9,10 @@ typedef struct s_texture
 	char	*south;
 	char	*west;
 	char	*east;
+	int		north_fd;
+	int		south_fd;
+	int		west_fd;
+	int		east_fd;
 	int		c[3];
 	int		f[3];
 }	t_texture;
