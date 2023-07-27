@@ -5,12 +5,12 @@
 
 typedef struct s_texture
 {
-	int	north;
-	int	south;
-	int	west;
-	int	east;
-	int	c[3];
-	int	f[3];
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		c[3];
+	int		f[3];
 }	t_texture;
 
 typedef struct s_point
