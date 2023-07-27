@@ -20,7 +20,9 @@ static int	check_extension(char *extension)
 int	parsing(char *file, t_texture *texture, t_map *map)
 {
 	int	ret_text;
+	int	nb_line;
 
+	nb_line = 0;
 	if (check_extension(file))
 		return (1);
 	map = ft_calloc(1, sizeof(t_map));
@@ -30,10 +32,12 @@ int	parsing(char *file, t_texture *texture, t_map *map)
 		ft_putendl_fd("Error\nYour map can't open", 2);
 		return (1);
 	}
-	ret_text = parse_texture(texture, map->fd_map);
+	ret_text = parse_texture(texture, map->fd_map, &nb_line);
 	if (ret_text == 1)
 		close_map(texture, map);
-	if (parse_map(map, ret_text))
+	// ret_text = 6;
+	// nb_line = 20;
+	if (parse_map(map, ret_text, nb_line))
 		close_map(texture, map);
 	return (0);
 }
