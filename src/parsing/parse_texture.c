@@ -1,11 +1,22 @@
 #include "../../include/cub3d.h"
-//
-// static	int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
-// {
-	// return (0);
-// 
-// }
-// 
+
+static	int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
+{
+	(void)texture;
+	
+	if (ft_strncmp(cmds[i], "F\0", 2) == 0)
+	{
+
+	}
+	else if (ft_strncmp(cmds[i], "C\0", 2) == 0)
+	{
+
+	}
+	else
+		return (1);
+	return (0);
+}
+
 static	int	check_direction(t_texture *texture, char **cmds, int i)
 {
 	printf("%s\n", cmds[i +1]);
@@ -23,6 +34,8 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 		texture->west_fd = open(cmds[i + 1], O_RDONLY);
 	else if (ft_strncmp(cmds[i], "EA\0", 3) == 0)
 		texture->east_fd = open(cmds[i + 1], O_RDONLY);
+	else if (check_floor_ceiling(texture, cmds, i) == 1)
+		return (1);
 	if (texture->north_fd == -1 || texture->south_fd == -1
 		|| texture->west_fd == -1 || texture->east_fd == -1)
 	{
@@ -30,8 +43,6 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 		ft_putstr_fd("Error\nImpossible d'ouvrir le fichier texture en lecture\n", 2);
 		return (1);
 	}
-//	if (check_floor_ceiling(texture, cmds, i) == 1)
-//		return (1);
 	return (0);
 }
 
@@ -72,16 +83,22 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 {
 	char	*line;
 	int		check;
+	int		nb_texture;
 
 	check = 0;
-	while (1)
+	nb_texture = 0;
+	while (nb_texture < 7)
 	{
 		line = get_next_line(fd_map);
 		if (line == NULL)
 			break ;
 		if (!check)
+		{
 			if (check_texture(texture, line) == 1)
 				check = 1;
+			else
+				nb_texture++;
+		}
 		free(line);
 		*nb_line += 1;
 	}
