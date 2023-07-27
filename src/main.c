@@ -11,13 +11,10 @@ int	main(int argc, char **argv)
 	{
 		ft_putendl_fd("Error\nPrecise your map, please", 2);
 		close_map(texture, map);
-		return (1);
 	}
 	if (parsing(argv[1], texture, map) == 1)
-	{
 		close_map(texture, map);
-		return (1);
-	}
-	close_map(texture, map);
+	close_strucmap(map);
+	close_texture(texture);
 	return (0);
 }

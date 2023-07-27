@@ -15,6 +15,16 @@ int	parse_fill_check(t_map *map, char *line, int index)
 			ft_putendl_fd("\" is not a valid char", 2);
 			return (1);
 		}
+		if (ft_char_in_set(line[i], "WESN"))
+		{
+			map->pos_nb += 1;
+			map->pos_init = line[i];
+			if (map->pos_nb > 1)
+			{
+				ft_putendl_fd("Error\nyou can just put one spawn", 2);
+				exit (1);
+			}
+		}
 		i++;
 	}
 	map->map[index] = ft_strdup(line);
@@ -47,7 +57,7 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		line = get_next_line(map->fd_map);
 		if (line == NULL)
 			break ;
-		if (line && i >= l_to_start && check == 0)
+		if (line && i >= l_to_start && check == 0 && map->pos_nb <= 1)
 		{
 			check = parse_fill_check(map, line, (i - l_to_start));
 			printf("%s", map->map[i - l_to_start]);

@@ -12,5 +12,7 @@ int		parse_map(t_map *map, int l_to_start, int nb_line);
 /*				close and exit				*/
 
 void	close_map(t_texture *text, t_map *map);
+void	close_texture(t_texture *text);
+void	close_strucmap(t_map *map);
 
 #endif
