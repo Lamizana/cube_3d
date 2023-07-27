@@ -33,7 +33,7 @@ int	parsing(char *file, t_texture *texture, t_map *map)
 	ret_text = parse_texture(texture, map->fd_map);
 	if (ret_text == 1)
 		close_map(texture, map);
-	if (parse_map(map))
+	if (parse_map(map, ret_text))
 		close_map(texture, map);
 	return (0);
 }
