@@ -39,7 +39,7 @@ int	parsing(char *file, t_texture *texture, t_map *map)
 	if (open_map(file, map))
 		return (1);
 	nb_line = parse_texture(texture, map->fd_map, &ret_text);
-	if (ret_text == 1)
+	if (ret_text == -1)
 		close_map(texture, map);
 	printf("ret_text %d\n", ret_text);
 	printf("nb line %d\n", nb_line);
