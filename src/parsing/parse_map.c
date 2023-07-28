@@ -1,7 +1,6 @@
 #include "../../include/cub3d.h"
-#include <stdlib.h>
 
-int	parse_fill_check(t_map *map, char *line, int index)
+static int	parse_fill_check(t_map *map, char *line, int index)
 {
 	int	i;
 
@@ -10,9 +9,7 @@ int	parse_fill_check(t_map *map, char *line, int index)
 	{
 		if (!(ft_char_in_set(line[i], "01WESN \n")))
 		{
-			ft_putstr_fd("Error\n\"", 2);
-			ft_putchar_fd(line[i], 2);
-			ft_putendl_fd("\" is not a valid char", 2);
+			msg_invalid_char(line[i]);
 			return (1);
 		}
 		if (ft_char_in_set(line[i], "WESN"))
@@ -31,7 +28,7 @@ int	parse_fill_check(t_map *map, char *line, int index)
 	return (0);
 }
 
-int	init_map(t_map *map, int nb_line)
+static int	init_map(t_map *map, int nb_line)
 {
 	map->map = calloc((nb_line + 1), sizeof(char *));
 	if (!map->map)
@@ -65,5 +62,8 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		free(line);
 		i++;
 	}
+	if (check == 0)
+		if (wall_around_map(map, (nb_line - l_to_start)))
+			check = 1;
 	return (check);
 }

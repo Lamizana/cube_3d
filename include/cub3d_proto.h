@@ -8,11 +8,15 @@
 int		parsing(char *file, t_texture *texture, t_map *map);
 int		parse_texture(t_texture *texture, int fd_map, int *nb_line);
 int		parse_map(t_map *map, int l_to_start, int nb_line);
+int	wall_around_map(t_map *map, int index_max);
 
 /*				close and exit				*/
 
 void	close_map(t_texture *text, t_map *map);
 void	close_texture(t_texture *text);
 void	close_strucmap(t_map *map);
+
+/*				error					*/
+void	msg_invalid_char(char c);
 
 #endif

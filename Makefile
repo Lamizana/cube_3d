@@ -5,18 +5,20 @@ NAME = cub3D
 INIT :=	\
 
 
-PARSING :=		src/parsing/parsing.c		\
-				src/parsing/parse_texture.c	\
-				src/parsing/parse_map.c		\
+PARSING :=		src/parsing/parsing.c				\
+				src/parsing/parse_texture.c			\
+				src/parsing/parse_map.c				\
+				src/parsing/wall_around.c		\
 		
-EXIT_CLEAR :=	src/exit_clear/close_map.c	\
-		
+EXIT_CLEAR :=	src/exit_clear/close_map.c			\
+				
+ERROR :=		src/error/msg_err_parsing.c			\
 
-SRC = src/main.c		\
-		${INIT}			\
-		${PARSING}		\
-		${EXIT_CLEAR}	\
-
+SRC = src/main.c									\
+		${INIT}										\
+		${PARSING}									\
+		${EXIT_CLEAR}								\
+		${ERROR}									\
 
 ############ FLAGS #########################
 
@@ -39,7 +41,7 @@ $(NAME): $(OBJ)
 	@make -C libft -s && echo "$(GREEN)libft compiled"
 	@clang $(FLAG) $(OBJ) libft/libft.a -o $(NAME) \
 	| echo "$(ORANGE)XXXXXXXXXXXXXXXXXX\n \
-	cube_3d COMPILED\n\
+	cub3d COMPILED\n\
 	XXXXXXXXXXXXXXXXXX"
 
 clean:
