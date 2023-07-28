@@ -3,6 +3,7 @@
 static int	parse_fill_check(t_map *map, char *line, int index)
 {
 	int	i;
+	char	*tmp;
 
 	i = 0;
 	while (line[i])
@@ -24,7 +25,9 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 		}
 		i++;
 	}
-	map->map[index] = ft_strdup(line);
+	tmp = ft_strtrim(line, "\n");
+	map->map[index] = ft_strdup(tmp);
+	free(tmp);
 	return (0);
 }
 
@@ -57,7 +60,7 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		if (line && i >= l_to_start && check == 0 && map->pos_nb <= 1)
 		{
 			check = parse_fill_check(map, line, (i - l_to_start));
-			printf("%s", map->map[i - l_to_start]);
+			printf("%s\n", map->map[i - l_to_start]);
 		}
 		free(line);
 		i++;
