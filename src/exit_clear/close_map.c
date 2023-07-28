@@ -15,10 +15,15 @@ void	close_texture(t_texture *text)
 
 	i = 3;
 	while (i < 9)
-	{
-		close(i);
-		i++;
-	}
+		close(i++);
+	if (text->north != NULL)
+		free(text->north);
+	if (text->south != NULL)
+		free(text->south);
+	if (text->west != NULL)
+		free(text->west);
+	if (text->east != NULL)
+		free(text->east);
 	free(text);
 }
 

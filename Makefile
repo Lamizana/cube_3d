@@ -7,6 +7,7 @@ INIT :=	\
 
 PARSING :=		src/parsing/parsing.c		\
 				src/parsing/parse_texture.c	\
+				src/parsing/init_texture.c	\
 				src/parsing/parse_map.c		\
 		
 EXIT_CLEAR :=	src/exit_clear/close_map.c	\
