@@ -181,6 +181,7 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 	int		line_max;
 
 	line_max = 0;
+	init_texture(texture);
 	while (1)
 	{
 		line = get_next_line(fd_map);
