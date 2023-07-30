@@ -5,10 +5,16 @@
 
 /********************* PARSING *********************/
 int		parsing(char *file, t_texture *texture, t_map *map);
-int		init_path_texture(t_texture *texture, char **cmds, int i);
-int		parse_texture(t_texture *texture, int fd_map, int *nb_line);
 int		parse_map(t_map *map, int l_to_start, int nb_line);
 int		wall_around_map(t_map *map, int index_max);
+
+int		init_path_texture(t_texture *texture, char **cmds, int i);
+int		parse_texture(t_texture *texture, int fd_map, int *nb_line);
+int		check_floor_ceiling(t_texture *texture, char **cmds, int i);
+// texture_utils.c //
+int		strcmp_texture(char **cmds, int i);
+void	free_path_texture(t_texture *texture);
+char	**trim_and_split(char *line, char *set_trim, char c2_split);
 
 /********** STRUCTURE INITIALIZATION **************/
 void	init_texture(t_texture *texture);

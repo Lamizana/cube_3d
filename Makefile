@@ -4,11 +4,13 @@ NAME = cub3D
 
 INIT :=			src/structure_init/texture_init.c	\
 
-EXIT_CLEAR :=	src/exit_clear/close_map.c	\
+EXIT_CLEAR :=	src/exit_clear/close_map.c			\
 
 PARSING :=		src/parsing/parsing.c				\
 				src/parsing/parse_texture.c			\
 				src/parsing/path_texture.c			\
+				src/parsing/texture_utils.c			\
+				src/parsing/floor_and_ceiling.c	\
 				src/parsing/parse_map.c				\
 				src/parsing/wall_around.c		\
 		
