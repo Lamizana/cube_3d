@@ -1,7 +1,8 @@
 NO ./texture/nord.png
-SO ./texture/sud.png      
+SO ./texture/sud.png
+C 225,30,0
 EA	./texture/est.png
-
+C 225,30,0
 WE ./texture/ouest.png 
 F 220,150,186
 C 225,30,0

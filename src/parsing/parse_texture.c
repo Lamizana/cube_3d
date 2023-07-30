@@ -1,31 +1,48 @@
 #include "../../include/cub3d.h"
 
-static	int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
+// Compares file direction //
+static int	strcmp_texture(char **cmds, int i)
 {
-	(void)texture;
-	if (ft_strncmp(cmds[i], "F\0", 2) == 0)
-	{
-
-	}
-	else if (ft_strncmp(cmds[i], "C\0", 2) == 0)
-	{
-
-	}
-	else if (ft_strncmp(cmds[i], "NO\0", 3) == 0
+	if (ft_strncmp(cmds[i], "NO\0", 3) == 0
 		|| ft_strncmp(cmds[i], "SO\0", 3) == 0
 		|| ft_strncmp(cmds[i], "WE\0", 3) == 0
-		|| ft_strncmp(cmds[i], "EA\0", 3) == 0)
+		|| ft_strncmp(cmds[i], "EA\0", 3) == 0
+		|| ft_strncmp(cmds[i], "F\0", 2) == 0
+		|| ft_strncmp(cmds[i], "C\0", 2) == 0)
 		return (0);
-	else 
-	{
-		ft_putstr_fd("Error\nImpossible en lecture\n", 2);
+	else
 		return (1);
+}
+
+// Checks floor and ceiling format //
+static	int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
+{
+	int	flag;
+
+	flag = 0;
+	printf("%s\n", cmds[i]);
+	if ((ft_strncmp(cmds[i], "F\0", 2) == 0 && texture->f[0] != -42)
+		|| (ft_strncmp(cmds[i], "C\0", 2) == 0 && texture->c[0] != -42))
+		flag = 1;
+	if (ft_strncmp(cmds[i], "F\0", 2) == 0 && texture->f[0] == -42)
+	{
+		printf("f:%d\n", texture->f[0]);
+		texture->f[0] = 1;
+
 	}
+	else if (ft_strncmp(cmds[i], "C\0", 2) == 0 && texture->c[0] == -42)
+	{
+		printf("c:%d\n", texture->c[0]);
+		texture->c[0] = 1;
+
+	}
+	if	(strcmp_texture(cmds, i) == 1 || flag == 1)
+		return (1);
 	return (0);
 }
 
 // ******************************************************************** //
-// free les path si une erreur survient:
+// Free paths if an error occurs //
 static void	free_path_texture(t_texture *texture)
 {
 	if (texture->north != NULL)
@@ -42,30 +59,7 @@ static void	free_path_texture(t_texture *texture)
 	texture->east = NULL;
 }
 
-static int	msg_error_texture(t_texture *texture, int flag)
-{
-	(void)texture;
-	if (flag == 1)
-		ft_putstr_fd("Error\nno texture file\n", 2);
-	if (flag == 2)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("texture file cannot be opened in read moden\n", 2);
-	}
-	if (flag == 3)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("texture file already exists\n", 2);
-	}
-	if (flag == 4)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("FLOOR\n", 2);
-	}
-	return (1);
-}
-
-// teste l ouverture des fichier textures et stocke leur emplacements:
+// Tests the opening of texture files and stores their locations //
 static	int	check_direction(t_texture *texture, char **cmds, int i)
 {
 	int	fd;
@@ -73,31 +67,30 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 	fd = 0;
 	if (cmds[i + 1] == NULL)
 	{
-		msg_error_texture(texture, 1);
+		msg_error_texture(1);
 		return (1);
 	}
 	fd = init_path_texture(texture, cmds, i);
 	if (fd == -1)
 	{
-		msg_error_texture(texture, 2);
+		msg_error_texture(2);
 		return (1);
 	}
 	if (fd == -42)
 	{
-		msg_error_texture(texture, 3);
+		msg_error_texture(3);
 		return (1);
 	}
 	if (check_floor_ceiling(texture, cmds, i) == 1)
 	{
-		msg_error_texture(texture, 3);
+		msg_error_texture(5);
 		return (1);
 	}
 	return (0);
 }
 
-// ***************************************************************************** //
-// Remplace les tabulations par des espaces,
-// enleve les '\n' et split le espaces:
+// ************************************************************************* //
+// Replace tabs with spaces and remove '\n' and split spaces //
 static char	**trim_and_split(char *line, char *set_trim, char c2_split)
 {
 	int		i;
@@ -111,26 +104,20 @@ static char	**trim_and_split(char *line, char *set_trim, char c2_split)
 		i++;
 	}
 	line = ft_strtrim(line, set_trim);
-	cmds = ft_split(line,c2_split);
+	cmds = ft_split(line, c2_split);
 	free(line);
 	return (cmds);
 }
 
-// Compare la direction du fichier:
-static int	strcmp_texture(char **cmds, int i)
+static void free_path_and_str(t_texture *texture, char **cmds, int flag)
 {
-	if (ft_strncmp(cmds[i], "NO\0", 3) == 0
-		|| ft_strncmp(cmds[i], "SO\0", 3) == 0
-		|| ft_strncmp(cmds[i], "WE\0", 3) == 0
-		|| ft_strncmp(cmds[i], "EA\0", 3) == 0
-		|| ft_strncmp(cmds[i], "F\0", 2) == 0
-		|| ft_strncmp(cmds[i], "C\0", 2) == 0)
-		return (0);
-	else
-		return (1);
+	ft_freestrs(cmds);
+	free_path_texture(texture);
+	if (flag == 1)
+		msg_error_texture(4);
 }
 
-// Verifie l ecriture dans le fichier ligne par ligne:
+// Checks the writing in the file line by line //
 static int	check_texture(t_texture *texture, char *line)
 {
 	char	**cmds;
@@ -144,16 +131,13 @@ static int	check_texture(t_texture *texture, char *line)
 		{
 			if (check_direction(texture, cmds, i) == 1)
 			{
-				ft_freestrs(cmds);
-				free_path_texture(texture);
+				free_path_and_str(texture, cmds, 0);
 				return (1);
 			}
 		}
 		else
 		{
-			ft_freestrs(cmds);
-			ft_putstr_fd("Error\nInvalid line\n", 2);
-			free_path_texture(texture);
+			free_path_and_str(texture, cmds, 1);
 			return (1);
 		}
 		i += 2;
@@ -162,19 +146,19 @@ static int	check_texture(t_texture *texture, char *line)
 	return (0);
 }
 
-// ***************************************************************************** //
-// Initilialise les variables de texture:
-static void init_texture(t_texture *texture)
+// Checks the number of textures //
+static int	check_nb_texture(t_texture *texture, int fd_map)
 {
-	texture->nb_texture = 0;
-	texture->north = NULL;
-	texture->south = NULL;
-	texture->west = NULL;
-	texture->east = NULL;
+	close(fd_map);
+	if (texture->nb_texture != 6)
+	{
+		msg_error_texture(1);
+		return (1);
+	}
+	return (0);
 }
 
-// Parcoure le fichier, copmte le nombre de ligne et
-// verifie les fichiers texture:
+// Browse the file, count the number of lines and check texture files //
 int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 {
 	char	*line;
@@ -197,6 +181,7 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 		free(line);
 		line_max++;
 	}
-	close(fd_map);
+	if (check_nb_texture(texture, fd_map) == 1)
+		return (1);
 	return (line_max);
 }

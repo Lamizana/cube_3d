@@ -2,7 +2,7 @@ NAME = cub3D
 
 ############ SOURCE #########################
 
-INIT :=	\
+INIT :=			src/structure_init/texture_init.c	\
 
 EXIT_CLEAR :=	src/exit_clear/close_map.c	\
 
@@ -22,13 +22,13 @@ SRC = src/main.c									\
 		${EXIT_CLEAR}								\
 		${ERROR}									\
 
-############ FLAGS #########################
+################## FLAGS #########################
 
 FLAG = -Wall -Werror -Wextra -g
 
 OBJ = $(SRC:.c=.o)
 
-############ colors #########################
+################## COLORS #########################
 
 RED		= \033[38;5;9m
 GREEN	= \033[38;5;76m
@@ -42,9 +42,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft -s && echo "$(GREEN)libft compiled"
 	@clang $(FLAG) $(OBJ) libft/libft.a -o $(NAME) \
-	| echo "$(ORANGE)XXXXXXXXXXXXXXXXXX\n \
+	| echo "$(ORANGE)XXXXXXXXXXXXXXXX\n \
 	cub3d COMPILED\n\
-	XXXXXXXXXXXXXXXXXX"
+	XXXXXXXXXXXXXXXX"
 
 clean:
 	@rm -f $(OBJ)
