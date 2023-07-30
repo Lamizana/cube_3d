@@ -5,6 +5,7 @@
 
 typedef struct s_texture
 {
+	int		nb_texture;
 	char	*north;
 	char	*south;
 	char	*west;

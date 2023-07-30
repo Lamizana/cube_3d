@@ -4,20 +4,13 @@ NAME = cub3D
 
 INIT :=	\
 
-
-<<<<<<< HEAD
-PARSING :=		src/parsing/parsing.c		\
-				src/parsing/parse_texture.c	\
-				src/parsing/init_texture.c	\
-				src/parsing/parse_map.c		\
-		
 EXIT_CLEAR :=	src/exit_clear/close_map.c	\
-=======
+
 PARSING :=		src/parsing/parsing.c				\
 				src/parsing/parse_texture.c			\
+				src/parsing/path_texture.c			\
 				src/parsing/parse_map.c				\
 				src/parsing/wall_around.c		\
->>>>>>> refs/remotes/origin/main
 		
 EXIT_CLEAR :=	src/exit_clear/close_map.c			\
 				
