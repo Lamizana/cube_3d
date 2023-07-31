@@ -70,7 +70,5 @@ int	init_path_texture(t_texture *texture, char **cmds, int i)
 	else if (ft_strncmp(cmds[i], "EA\0", 3) == 0)
 		fd = strdup_texture_east(texture, cmds, i);
 	texture->nb_texture++;
-	printf("nb_texture: %d\n", texture->nb_texture);
-	printf("line: %s\n", cmds[i + 1]);
 	return (fd);
 }

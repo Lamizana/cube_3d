@@ -40,6 +40,64 @@ static void	free_path_and_str(t_texture *texture, char **cmds, int flag)
 		msg_error_texture(4);
 }
 
+static	int	ft_replace(char *line)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			j++;
+		i++;
+	}
+	if (j != 2)
+		return (1);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ')
+			line[i] = ',';
+		i++;
+	}
+	return (0);
+}
+
+static char	**create_cmds(char *line, t_texture *texture)
+{
+	int		i;
+	int		j;
+	char	**cmds;
+
+	i = 0;
+	j = 0;
+	while (line[i] != '\0')
+	{
+		while (line[i] == ' ')
+			i++;
+		if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] != '\0')
+		{
+			if (ft_replace(line) == 1)
+			{
+				texture->nb_texture = -1;
+				return (NULL);
+			}
+			line[i + 1] = ',';
+			cmds = trim_and_split(line, "\n", ',');
+			return (cmds);
+		}
+		else
+		{
+			cmds = trim_and_split(line, "\n", ' ');
+			return (cmds);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 // Checks the writing in the file line by line //
 static int	check_texture(t_texture *texture, char *line)
 {
@@ -47,8 +105,13 @@ static int	check_texture(t_texture *texture, char *line)
 	int		i;
 
 	i = 0;
-	cmds = trim_and_split(line, "\n", ' ');
-	while (cmds[i])
+	cmds = create_cmds(line, texture);
+	if (texture->nb_texture == -1)
+	{
+		free_path_and_str(texture, cmds, 1);
+		return (1);
+	}
+	if (cmds[i])
 	{
 		if (strcmp_texture(cmds, i) == 0)
 		{
@@ -63,7 +126,6 @@ static int	check_texture(t_texture *texture, char *line)
 			free_path_and_str(texture, cmds, 1);
 			return (1);
 		}
-		i += 2;
 	}
 	ft_freestrs(cmds);
 	return (0);
@@ -88,7 +150,6 @@ int	parse_texture(t_texture *texture, int fd_map, int *nb_line)
 	int		line_max;
 
 	line_max = 0;
-	init_texture(texture);
 	while (1)
 	{
 		line = get_next_line(fd_map);
