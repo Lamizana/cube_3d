@@ -1,63 +1,73 @@
 #include "../../include/cub3d.h"
 
-// Verifir le foRMAT DU SOL:
-static int check_floor(t_texture *texture, char **cmds, int i)
+// Verifie les valeurs des couleurs //
+static int	check_number(int table_rgb[])
 {
-	// int	a;
-	// int	b;
-	// int	c;
-	// char **tmp;
-// 
-	// i = 0;
-	// tmp = trim_and_split(cmds[i+1], "\n", ',');
-	// printf("%s\n", tmp[i]);
-	// printf("%s\n", tmp[i+1]);
-	// a = ft_atoi(cmds[0]);
-	// b = ft_atoi(cmds[2]);
-	// c = ft_atoi(cmds[4]);
-	// if ((a < 0 || a > 255 || b < 0 || b > 255 || c < 0 || c > 255)
-			// && (ft_strncmp(cmds[1], ",\0", 2) != 0 
-			// || ft_strncmp(cmds[3], ",\0", 2) != 0 
-			// || cmds[5] != NULL))
-		// printf("ERRRORORORORO\n");
-	i = 0;
-	(void)texture;
-	(void)cmds;
+	int	i;
 
-	printf("f:%d\n", texture->f[0]);
+	i = 0;
+	while (i < 3)
+	{
+		if (table_rgb[i] < 0 || table_rgb[i] > 255)
+		{
+			msg_error_texture(6);
+			return (1);
+		}
+		i++;
+	}
 	return (0);
 }
 
-static int check_ceiling(t_texture *texture, char **cmds, int i)
+static int rgb_table(int table_rgb[], char **cmds)
 {
+	char **tmp;
+	int	i;
 
-	(void)texture;
-	(void)cmds;
 	i = 0;
-	printf("c:%d\n", texture->c[0]);
+	while (cmds[i])
+		printf("cdms: %s\n", cmds[i++]);
+	tmp = trim_and_split(cmds[1], "\n", ',');
+	// if (nb_cmds(tmp) != 3)
+	// {
+		// ft_freestrs(tmp);
+		// msg_error_texture(6);
+		// return (1);
+	// }
+	table_rgb[0] = ft_atoi(tmp[0]);
+	table_rgb[1] = ft_atoi(tmp[1]);
+	table_rgb[2] = ft_atoi(tmp[2]);
+	ft_freestrs(tmp);
+	if (check_number(table_rgb) == 1)
+		return (1);
+	printf("rgb_color[0] = %d\n", table_rgb[0]);
+	printf("rgb_color[1]= %d\n", table_rgb[1]);
+	printf("rgb_color[2] = %d\n", table_rgb[2]);
 	return (0);
 }
 
 // Checks floor and ceiling format //
-int	check_floor_ceiling(t_texture *texture, char **cmds, int i)
+int	check_floor_ceiling(t_texture *texture, char **cmds)
 {
 	int	flag;
 
 	flag = 0;
-	if ((ft_strncmp(cmds[i], "F\0", 2) == 0 && texture->f[0] != -42)
-		|| (ft_strncmp(cmds[i], "C\0", 2) == 0 && texture->c[0] != -42))
+	if ((ft_strncmp(cmds[0], "F\0", 2) == 0 && texture->f[0] != -42)
+		|| (ft_strncmp(cmds[0], "C\0", 2) == 0 && texture->c[0] != -42))
+	{
+		msg_error_texture(5);
 		flag = 1;
-	if (ft_strncmp(cmds[i], "F\0", 2) == 0 && texture->f[0] == -42)
+	}
+	if (ft_strncmp(cmds[0], "F\0", 2) == 0 && texture->f[0] == -42)
 	{
-		if (check_floor(texture, cmds, i) == 1)
+		if (rgb_table(texture->f, cmds) == 1)
 			return (1);
 	}
-	else if (ft_strncmp(cmds[i], "C\0", 2) == 0 && texture->c[0] == -42)
+	else if (ft_strncmp(cmds[0], "C\0", 2) == 0 && texture->c[0] == -42)
 	{
-		if (check_ceiling(texture, cmds, i) == 1)
+		if (rgb_table(texture->c, cmds) == 1)
 			return (1);
 	}
-	if (strcmp_texture(cmds, i) == 1 || flag == 1)
+	if (strcmp_texture(cmds, 0) == 1 || flag == 1)
 		return (1);
 	return (0);
 }

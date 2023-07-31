@@ -49,3 +49,16 @@ char	**trim_and_split(char *line, char *set_trim, char c2_split)
 	free(line);
 	return (cmds);
 }
+
+// Counts the number of orders in the line //
+int	nb_cmds(char **cmds)
+{
+	int	i;
+
+	i = 0;
+	if (!cmds)
+		return (0);
+	while (cmds[i])
+		i++;
+	return (i);
+}

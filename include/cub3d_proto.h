@@ -10,11 +10,12 @@ int		wall_around_map(t_map *map, int index_max);
 
 int		init_path_texture(t_texture *texture, char **cmds, int i);
 int		parse_texture(t_texture *texture, int fd_map, int *nb_line);
-int		check_floor_ceiling(t_texture *texture, char **cmds, int i);
+int		check_floor_ceiling(t_texture *texture, char **cmds);
 // texture_utils.c //
 int		strcmp_texture(char **cmds, int i);
 void	free_path_texture(t_texture *texture);
 char	**trim_and_split(char *line, char *set_trim, char c2_split);
+int		nb_cmds(char **cmds);
 
 /********** STRUCTURE INITIALIZATION **************/
 void	init_texture(t_texture *texture);

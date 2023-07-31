@@ -30,5 +30,7 @@ void	msg_error_texture(int flag)
 		ft_putstr_fd("Invalid line\n", 2);
 	if (flag == 5)
 		ft_putstr_fd("Floor or ceilling already exists\n", 2);
+	if (flag == 6)
+		ft_putstr_fd("Floor or ceiling values are not valid\n", 2);
 	ft_putstr_fd(NC, 2);
 }
