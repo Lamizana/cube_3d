@@ -3,7 +3,7 @@
 void	msg_color_error(char *color)
 {
 	ft_putstr_fd(CRED, 2);
-	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	ft_putstr_fd(NC, 2);
 	ft_putstr_fd(color, 2);
 }
@@ -11,6 +11,7 @@ void	msg_color_error(char *color)
 void	msg_invalid_char(char c)
 {
 	msg_color_error(IRED);
+	ft_putchar_fd('\"', 2);
 	ft_putchar_fd(c, 2);
 	ft_putendl_fd("\" is not a valid char", 2);
 	ft_putstr_fd(NC, 2);

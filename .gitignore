@@ -1,6 +1,6 @@
 cub3D
 /texture/*
-/map/*
+/map/*.cub
 *.a
 *.swp
 *.o
