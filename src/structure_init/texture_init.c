@@ -1,10 +1,12 @@
 #include "../../include/cub3d.h"
 
 // Initialize texture variables //
-void init_texture(t_texture *texture)
+void	init_texture(t_texture *texture)
 {
 	int	i;
 
+	if (!texture)
+		return ;
 	i = 0;
 	while (i < 3)
 	{

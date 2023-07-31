@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-// Verifie les valeurs des couleurs //
+// Checks color values //
 static int	check_number(int table_rgb[])
 {
 	int	i;
@@ -18,30 +18,44 @@ static int	check_number(int table_rgb[])
 	return (0);
 }
 
-static int rgb_table(int table_rgb[], char **cmds)
+static int	str_isdigit(char *line)
 {
-	char **tmp;
 	int	i;
 
-	i = 0;
-	while (cmds[i])
-		printf("cdms: %s\n", cmds[i++]);
-	tmp = trim_and_split(cmds[1], "\n", ',');
-	// if (nb_cmds(tmp) != 3)
-	// {
-		// ft_freestrs(tmp);
-		// msg_error_texture(6);
-		// return (1);
-	// }
-	table_rgb[0] = ft_atoi(tmp[0]);
-	table_rgb[1] = ft_atoi(tmp[1]);
-	table_rgb[2] = ft_atoi(tmp[2]);
-	ft_freestrs(tmp);
+	i = 1;
+	while (line[i] != '\0')
+	{
+		if (ft_isdigit(line[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	rgb_table(int table_rgb[], char **cmds)
+{
+	int	i;
+
+	i = 1;
+	if (nb_cmds(cmds) != 4)
+	{
+		msg_error_texture(7);
+		return (1);
+	}
+	while (cmds[i] != NULL)
+	{
+		if (str_isdigit(cmds[i]) == 1)
+		{
+			msg_error_texture(6);
+			return (1);
+		}
+		i++;
+	}
+	table_rgb[0] = ft_atoi(cmds[1]);
+	table_rgb[1] = ft_atoi(cmds[2]);
+	table_rgb[2] = ft_atoi(cmds[3]);
 	if (check_number(table_rgb) == 1)
 		return (1);
-	printf("rgb_color[0] = %d\n", table_rgb[0]);
-	printf("rgb_color[1]= %d\n", table_rgb[1]);
-	printf("rgb_color[2] = %d\n", table_rgb[2]);
 	return (0);
 }
 

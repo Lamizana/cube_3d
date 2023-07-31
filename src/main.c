@@ -6,6 +6,7 @@ int	main(int argc, char **argv)
 	t_map		*map;
 
 	texture = malloc (sizeof(t_texture));
+	init_texture(texture);
 	map = ft_calloc(1, sizeof(t_map));
 	if (argc != 2)
 	{
