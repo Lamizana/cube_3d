@@ -33,7 +33,6 @@ int	wall_around_map(t_map *map, int index_max)
 	int	size_line;
 
 	i = 0;
-	(void)index_max;
 	while (map->map[i])
 	{
 		j = 0;

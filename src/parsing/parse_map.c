@@ -2,11 +2,11 @@
 
 static int	parse_fill_check(t_map *map, char *line, int index)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
-	i = 0;
-	while (line[i])
+	i = -1;
+	while (line[++i])
 	{
 		if (!(ft_char_in_set(line[i], "01WESN \n")))
 		{
@@ -23,7 +23,6 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 				return (1);
 			}
 		}
-		i++;
 	}
 	tmp = ft_strtrim(line, "\n");
 	map->map[index] = ft_strdup(tmp);
@@ -58,15 +57,17 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		if (line == NULL)
 			break ;
 		if (line && i >= l_to_start && check == 0 && map->pos_nb <= 1)
-		{
 			check = parse_fill_check(map, line, (i - l_to_start));
-			printf("%s\n", map->map[i - l_to_start]);
-		}
 		free(line);
 		i++;
 	}
 	if (check == 0)
 		if (wall_around_map(map, (nb_line - l_to_start)))
 			check = 1;
+	if (!map->pos_init)
+	{
+		ft_putendl_fd("Error\nNeed one character", 2);
+		check = 1;
+	}
 	return (check);
 }
