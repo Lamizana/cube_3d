@@ -17,16 +17,18 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 		msg_error_texture(2);
 		return (1);
 	}
-	if (fd == -42)
+	else if (fd == -42)
 	{
 		msg_error_texture(3);
 		return (1);
 	}
-	if (check_floor_ceiling(texture, cmds, i) == 1)
+	else if (fd == -2)
 	{
-		msg_error_texture(5);
+		msg_error_texture(4);
 		return (1);
 	}
+	if (check_floor_ceiling(texture, cmds) == 1)
+		return (1);
 	return (0);
 }
 

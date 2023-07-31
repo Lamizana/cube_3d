@@ -20,7 +20,7 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 			if (map->pos_nb > 1)
 			{
 				ft_putendl_fd("Error\nyou can just put one spawn", 2);
-				exit (1);
+				return (1);
 			}
 		}
 		i++;
