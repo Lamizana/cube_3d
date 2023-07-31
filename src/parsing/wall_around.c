@@ -15,7 +15,8 @@ int	check_arround( t_map *map, int i, int j, int index_max)
 		// || !map->map[i + 1][j] || !map->map[i][j + 1])
 		// return (1);
 	if ((j < sizeless && (map->map[i - 1][j] == '1'
-		|| map->map[i - 1][j] == '0' || map->map[i - 1][j] == map->pos_init)) 
+			|| map->map[i - 1][j] == '0'
+		|| map->map[i - 1][j] == map->pos_init))
 		&& (j < sizeplus && (map->map[i + 1][j] == '1'
 		|| map->map[i + 1][j] == '0' || map->map[i + 1][j] == map->pos_init))
 		&& (map->map[i][j - 1] == '1' || map->map[i][j + 1] == '1'
@@ -42,13 +43,13 @@ int	wall_around_map(t_map *map, int index_max)
 			if ((i == 0 || i == (index_max - 1))
 				&& (map->map[i][j] == '0' || map->map[i][j] == map->pos_init))
 			{
-				printf("wrong map\n");
+				ft_putendl_fd("Error\nwrong map", 2);
 				return (1);
 			}
 			if ((j == 0 || j == (size_line - 1))
 				&& (map->map[i][j] == '0' || map->map[i][j] == map->pos_init))
 			{
-				printf("wrong map\n");
+				ft_putendl_fd("Error\nwrong map", 2);
 				return (1);
 			}
 			if (map->map[i][j] == '0' || map->map[i][j] == map->pos_init)

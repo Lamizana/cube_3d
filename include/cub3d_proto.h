@@ -26,8 +26,9 @@ void	close_texture(t_texture *text);
 void	close_strucmap(t_map *map);
 
 /********************* ERROR **********************/
-void	msg_invalid_char(char c);
+int		msg_invalid_char(char c);
 void	msg_error_texture(int flag);
 void	msg_color_error(char *color);
+int		msg_character(int character);	
 
 #endif

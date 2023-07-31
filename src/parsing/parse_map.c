@@ -4,24 +4,20 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 {
 	int		i;
 	char	*tmp;
+	int		check;
 
 	i = 0;
-	while (line[i])
+	check = 0;
+	while (line[i] && !check)
 	{
 		if (!(ft_char_in_set(line[i], "01WESN \n")))
-		{
-			msg_invalid_char(line[i]);
-			return (1);
-		}
+			check = msg_invalid_char(line[i]);
 		if (ft_char_in_set(line[i], "WESN"))
 		{
 			map->pos_nb += 1;
 			map->pos_init = line[i];
 			if (map->pos_nb > 1)
-			{
-				ft_putendl_fd("Error\nyou can just put one spawn", 2);
-				return (1);
-			}
+				check = msg_character(2);
 		}
 		i++;
 	}
@@ -66,9 +62,6 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		if (wall_around_map(map, (nb_line - l_to_start)))
 			check = 1;
 	if (check == 0 && !map->pos_init)
-	{
-		ft_putendl_fd("Error\nNeed one character", 2);
-		check = 1;
-	}
+		check = msg_character(0);
 	return (check);
 }
