@@ -13,7 +13,7 @@ static int	check_extension(char *extension)
 			return (0);
 		i++;
 	}
-	ft_putendl_fd("Error\nThe extension is incorrect and should be .cub", 2);
+	msg_error_texture(11);
 	return (1);
 }
 
@@ -22,7 +22,7 @@ int	open_map(char *file, t_map *map)
 	map->fd_map = open(file, O_RDONLY);
 	if (map->fd_map < 0)
 	{
-		ft_putendl_fd("Error\nYour map can't open", 2);
+		msg_error_texture(10);
 		return (1);
 	}
 	return (0);

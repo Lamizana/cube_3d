@@ -36,14 +36,22 @@ void	msg_error_texture(int flag)
 		ft_putstr_fd("floor or ceiling values are not valid\n", 2);
 	if (flag == 7)
 		ft_putstr_fd("number of invalid arguments\n", 2);
+	if (flag == 8)
+		ft_putstr_fd("need one character\n", 2);
+	if (flag == 9)
+		ft_putstr_fd("you can just put one spawn\n", 2);
+	if (flag == 10)
+		ft_putstr_fd("your map can't open\n", 2);
+	if (flag == 11)
+		ft_putstr_fd("the extension is incorrect and should be .cub\n", 2);
 	ft_putstr_fd(NC, 2);
 }
 
 int	msg_character(int character)
 {
 	if (!character)
-		ft_putendl_fd("Error\nNeed one character", 2);
+		msg_error_texture(8);
 	if (character)
-		ft_putendl_fd("Error\nyou can just put one spawn", 2);
+		msg_error_texture(9);
 	return (1);
 }
