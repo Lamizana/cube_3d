@@ -15,7 +15,8 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 		if (ft_char_in_set(line[i], "WESN"))
 		{
 			map->pos_nb += 1;
-			map->pos_init = line[i];
+			if (!map->pos_init)
+				map->pos_init = line[i];
 			if (map->pos_nb > 1)
 				check = msg_character(2);
 		}
@@ -24,7 +25,7 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 	tmp = ft_strtrim(line, "\n");
 	map->map[index] = ft_strdup(tmp);
 	free(tmp);
-	return (0);
+	return (check);
 }
 
 static int	init_map(t_map *map, int nb_line)
