@@ -18,20 +18,6 @@ static int	check_number(int table_rgb[])
 	return (0);
 }
 
-static int	str_isdigit(char *line)
-{
-	int	i;
-
-	i = 1;
-	while (line[i] != '\0')
-	{
-		if (ft_isdigit(line[i]) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 static int	rgb_table(int table_rgb[], char **cmds)
 {
 	int	i;
@@ -60,7 +46,7 @@ static int	rgb_table(int table_rgb[], char **cmds)
 }
 
 // Checks floor and ceiling format //
-int	check_floor_ceiling(t_texture *texture, char **cmds)
+int	check_rgb_format(t_texture *texture, char **cmds)
 {
 	int	flag;
 

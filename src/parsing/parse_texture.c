@@ -12,22 +12,9 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 		return (1);
 	}
 	fd = init_path_texture(texture, cmds, i);
-	if (fd == -1)
-	{
-		msg_error_texture(2);
+	if (fd_error(fd) == 1)
 		return (1);
-	}
-	else if (fd == -42)
-	{
-		msg_error_texture(3);
-		return (1);
-	}
-	else if (fd == -2)
-	{
-		msg_error_texture(4);
-		return (1);
-	}
-	if (check_floor_ceiling(texture, cmds) == 1)
+	if (check_rgb_format(texture, cmds) == 1)
 		return (1);
 	return (0);
 }
@@ -35,87 +22,24 @@ static	int	check_direction(t_texture *texture, char **cmds, int i)
 static void	free_path_and_str(t_texture *texture, char **cmds, int flag)
 {
 	ft_freestrs(cmds);
-	free_path_texture(texture);
+	close_texture(texture, 1);
 	if (flag == 1)
 		msg_error_texture(4);
-}
-
-static	int	ft_replace(char *line)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (line[i])
-	{
-		if (line[i] == ',')
-			j++;
-		i++;
-	}
-	if (j != 2)
-		return (1);
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == ' ')
-			line[i] = ',';
-		i++;
-	}
-	return (0);
-}
-
-static char	**create_cmds(char *line, t_texture *texture)
-{
-	int		i;
-	int		j;
-	char	**cmds;
-
-	i = 0;
-	j = 0;
-	while (line[i] != '\0')
-	{
-		while (line[i] == ' ')
-			i++;
-		if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] != '\0')
-		{
-			if (ft_replace(line) == 1)
-			{
-				texture->nb_texture = -1;
-				return (NULL);
-			}
-			line[i + 1] = ',';
-			cmds = trim_and_split(line, "\n", ',');
-			return (cmds);
-		}
-		else
-		{
-			cmds = trim_and_split(line, "\n", ' ');
-			return (cmds);
-		}
-		i++;
-	}
-	return (NULL);
 }
 
 // Checks the writing in the file line by line //
 static int	check_texture(t_texture *texture, char *line)
 {
 	char	**cmds;
-	int		i;
 
-	i = 0;
 	cmds = create_cmds(line, texture);
 	if (texture->nb_texture == -1)
-	{
-		free_path_and_str(texture, cmds, 1);
 		return (1);
-	}
-	if (cmds[i])
+	if (cmds[0])
 	{
-		if (strcmp_texture(cmds, i) == 0)
+		if (strcmp_texture(cmds, 0) == 0)
 		{
-			if (check_direction(texture, cmds, i) == 1)
+			if (check_direction(texture, cmds, 0) == 1)
 			{
 				free_path_and_str(texture, cmds, 0);
 				return (1);
@@ -131,6 +55,7 @@ static int	check_texture(t_texture *texture, char *line)
 	return (0);
 }
 
+// ************************************************************* //
 // Checks the number of textures //
 static int	check_nb_texture(t_texture *texture, int fd_map)
 {

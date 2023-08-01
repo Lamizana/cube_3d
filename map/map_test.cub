@@ -1,14 +1,15 @@
 NO  ./texture/nord.png
-SO	./texture/sud.png 
+SO ./texture/sud.png 
+WE ./texture/ouest.png		
 
-WE ./texture/ouest.png
+WE ./ texture/ouest.png
 EA	./texture/est.png 	
-F 2,6,236  
+	F   52	,0,236 
 
 
                                                                                                              
 
-C 123, 14 , 58
+C 123, 14	, 58    
 
 
 
