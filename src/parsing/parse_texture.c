@@ -24,7 +24,10 @@ static void	free_path_and_str(t_texture *texture, char **cmds, int flag)
 	ft_freestrs(cmds);
 	close_texture(texture, 1);
 	if (flag == 1)
+	{
 		msg_error_texture(4);
+		texture->nb_texture = -42;
+	}
 }
 
 // Checks the writing in the file line by line //

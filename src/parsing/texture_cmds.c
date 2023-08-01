@@ -50,7 +50,7 @@ char	**create_cmds(char *line, t_texture *texture)
 	{
 		while (line[i] == ' ' || line [i] == '\t')
 			i++;
-		if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
+		if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] != '\0')
 		{
 			cmds = replace_color_rgb(line, texture, i);
 			return (cmds);
