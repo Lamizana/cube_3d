@@ -12,25 +12,32 @@ int		init_path_texture(t_texture *texture, char **cmds, int i);
 int		parse_texture(t_texture *texture, int fd_map, int *nb_line);
 int		check_rgb_format(t_texture *texture, char **cmds);
 char	**create_cmds(char *line, t_texture *texture);
-// texture_utils.c //
+
+/********************* texture_utils.c ********************/
 int		fd_error(int fd);
 int		nb_cmds(char **cmds);
 int		str_isdigit(char *line);
 int		strcmp_texture(char **cmds, int i);
 char	**trim_and_split(char *line, char *set_trim, char c2_split);
 
-/********** STRUCTURE INITIALIZATION **************/
+/**************** INITIALIZATION **************************/
 void	init_texture(t_texture *texture);
+t_param	*init_param(t_map *map, t_texture *text);
 
 /***************** CLOSE AND EXIT *****************/
 void	close_map(t_texture *text, t_map *map);
 void	close_texture(t_texture *text, int flag);
 void	close_strucmap(t_map *map);
+void	close_param(t_param *param);
 
 /********************* ERROR **********************/
 int		msg_invalid_char(char c);
 void	msg_error_texture(int flag);
 void	msg_color_error(char *color);
-int		msg_character(int character);	
+int		msg_character(int character);
+
+/********************* GRAPHIC ********************/
+
+void	ft_mlx(t_map *map, t_texture *text);
 
 #endif

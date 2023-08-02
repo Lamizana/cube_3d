@@ -16,25 +16,35 @@ typedef struct s_texture
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	int		x;
+	int		y;
+	int		z;
 }	t_point;
 
 typedef struct s_map
 {
 	int		fd_map;
 	char	**map;
+	int		len_m;
+	int		index_m;
 	int		pos_nb;
 	char	pos_init;
 	t_point	*point;
 }	t_map;
 
-// typedef struct s_param
-// {
-	// int			fd_map;
-	// t_texture	*text;
-	// t_map		*map;
-// } name;
+typedef struct s_graph
+{
+	mlx_t		mlx;
+	mlx_image_t	*img_1;
+	mlx_image_t	*img_0;
+	mlx_image_t	*img_p;
+}	t_graph;
+
+typedef struct s_param
+{
+	t_texture	*text;
+	t_map		*map;
+	t_graph		*graph;
+}	t_param;
 
 #endif

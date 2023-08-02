@@ -15,6 +15,7 @@ int	main(int argc, char **argv)
 	}
 	if (parsing(argv[1], texture, map) == 1)
 		close_map(texture, map);
+	ft_mlx(map, texture);
 	close_strucmap(map);
 	close_texture(texture, 0);
 	return (0);

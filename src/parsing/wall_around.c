@@ -38,6 +38,8 @@ int	wall_around_map(t_map *map, int index_max)
 	{
 		j = 0;
 		size_line = ft_strlen(map->map[i]);
+		if (map->len_m < size_line)
+			map->len_m = ft_strlen(map->map[i]);
 		while (map->map[i][j])
 		{
 			if ((i == 0 || i == (index_max - 1))

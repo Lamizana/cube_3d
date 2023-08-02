@@ -47,7 +47,8 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 
 	i = 0;
 	check = 0;
-	if (init_map(map, (nb_line - l_to_start)))
+	map->index_m = nb_line - l_to_start;
+	if (init_map(map, map->index_m))
 		return (1);
 	while (1)
 	{
@@ -60,7 +61,7 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 		i++;
 	}
 	if (check == 0)
-		if (wall_around_map(map, (nb_line - l_to_start)))
+		if (wall_around_map(map, map->index_m))
 			check = 1;
 	if (check == 0 && !map->pos_init)
 		check = msg_character(0);
