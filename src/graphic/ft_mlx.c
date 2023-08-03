@@ -17,14 +17,7 @@ void	hook(void *parameter)
 	create_img(param->graph->img_p, 0xFF00FFFF);
 
 	// deplace le perso:
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_UP))
-		param->graph->img_p->instances[0].y -= 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_DOWN))
-		param->graph->img_p->instances[0].y += 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_LEFT))
-		param->graph->img_p->instances[0].x -= 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_RIGHT))
-		param->graph->img_p->instances[0].x += 5;
+	move_minimap(param->graph);
 
 	// creation image pour la position du perso:
 	move_minimap(param->graph);

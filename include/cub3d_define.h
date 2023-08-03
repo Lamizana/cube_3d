@@ -17,10 +17,14 @@
 # define CRED		"\033[6;31m"
 # define BIBLUE		"\033[1;94m"
 
-// ############ MLX  ############# //
+// ############  MLX  ############# //
 
 # define WIDTH		512
 # define HEIGHT		512
 # define BLOCK		32
+
+// ############  MATH  ############# //
+
+# define PI		3.14159265359
 
 #endif

@@ -40,6 +40,15 @@ typedef struct s_graph
 	mlx_image_t	*img_p;
 }	t_graph;
 
+typedef struct s_camera
+{
+	float	px; // position x
+	float	py;	// position x
+	float	dx; // delta x
+	float	dy; // delta y
+	float	pa; // angle of the player
+}	t_cam;
+
 typedef struct s_param
 {
 	t_texture	*text;

@@ -2,8 +2,6 @@
 # define CUB3D_PROTO_H
 
 # include "cub3d.h"
-#include <stdint.h>
-#include <sys/types.h>
 
 /********************* PARSING *********************/
 int		parsing(char *file, t_texture *texture, t_map *map);
