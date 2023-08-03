@@ -87,8 +87,8 @@ int	ft_mlx(t_map *map, t_texture *text)
 	for(int i = 0; i < map->index_m; i++)
 		printf("----%s-----\n", map->map[i]);
 	param = init_param(map, text);
-	param->graph->mlx = mlx_init(map->index_m * BLOCK, \
-			map->len_m * BLOCK, "Cub3D", true);
+	param->graph->mlx = mlx_init(map->len_m * BLOCK, \
+			map->index_m * BLOCK, "Cub3D", true);
 	if (!param->graph->mlx)
 		return (1);
 	param->graph->img_0 = mlx_new_image(param->graph->mlx, BLOCK, BLOCK);
