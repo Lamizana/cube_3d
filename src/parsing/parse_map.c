@@ -3,7 +3,6 @@
 static int	parse_fill_check(t_map *map, char *line, int index)
 {
 	int		i;
-	char	*tmp;
 	int		check;
 
 	i = 0;
@@ -20,11 +19,11 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 			if (map->pos_nb > 1)
 				check = msg_character(2);
 		}
+		if (line[i] == '\n')
+			line[i] = ' ';
 		i++;
 	}
-	tmp = ft_strtrim(line, "\n");
-	map->map[index] = ft_strdup(tmp);
-	free(tmp);
+	map->map[index] = ft_strdup(line);
 	return (check);
 }
 
