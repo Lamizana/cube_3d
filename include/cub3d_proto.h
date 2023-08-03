@@ -2,6 +2,8 @@
 # define CUB3D_PROTO_H
 
 # include "cub3d.h"
+#include <stdint.h>
+#include <sys/types.h>
 
 /********************* PARSING *********************/
 int		parsing(char *file, t_texture *texture, t_map *map);
@@ -39,5 +41,8 @@ int		msg_character(int character);
 /********************* GRAPHIC ********************/
 
 int		ft_mlx(t_map *map, t_texture *text);
+
+void	create_img(mlx_image_t *img, uint32_t color);
+unsigned long	rgb_color(t_param *param);
 
 #endif

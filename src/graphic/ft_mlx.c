@@ -1,31 +1,21 @@
 #include "../../include/cub3d.h"
 
-unsigned long createRGBA(int r, int g, int b, int a)
-{   
-    return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8)
-           + (a & 0xff);
-}
-
 void	hook(void *parameter)
 {
 	t_param		*param;
-	uint32_t	x;
-	uint32_t	y;
+	unsigned	long int rgb;
 
 	param = parameter;
+	rgb = rgb_color(param);
 	// creation image pour les 1:
-	for (x = 0; x < param->graph->img_1->width; x++)
-		for (y= 0; y <param->graph->img_1->height; y++)
-			mlx_put_pixel(param->graph->img_1, x , y , 0x0000FFFF);
+	create_img(param->graph->img_1, 0x0000FFFF);
 
 	// creation image pour les 0:
-	for (x = 0; x < param->graph->img_0->width; x++)
-		for(y= 0; y < param->graph->img_0->height; y++)
-			mlx_put_pixel(param->graph->img_0, x , y ,createRGBA(param->text->f[0], param->text->f[1], param->text->f[2], 255));
+	create_img(param->graph->img_0, rgb);
+	
 	// creation image pour la position du perso:
-	for (x = 0; x < param->graph->img_p->width; x++)
-		for(y= 0; y < param->graph->img_p->height; y++)
-			mlx_put_pixel(param->graph->img_p, x, y, rand() % RAND_MAX);
+	create_img(param->graph->img_p, 0xFF00FFFF);
+
 	// deplace le perso:
 	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_UP))
 		param->graph->img_p->instances[0].y -= 5;
