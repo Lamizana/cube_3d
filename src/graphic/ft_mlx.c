@@ -1,5 +1,9 @@
 #include "../../include/cub3d.h"
-
+unsigned long createRGBA(int r, int g, int b, int a)
+{   
+    return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8)
+           + (a & 0xff);
+}
 void	hook(void *parameter)
 {
 	t_param		*param;
@@ -15,8 +19,7 @@ void	hook(void *parameter)
 	// creation image pour les 0:
 	for (x = 0; x < param->graph->img_0->width; x++)
 		for(y= 0; y < param->graph->img_0->height; y++)
-			mlx_put_pixel(param->graph->img_0, x , y ,0x00FF0000);
-
+			mlx_put_pixel(param->graph->img_0, x , y ,createRGBA(param->text->f[0], param->text->f[1], param->text->f[2], 255));
 	// creation image pour la position du perso:
 	for (x = 0; x < param->graph->img_p->width; x++)
 		for(y= 0; y < param->graph->img_p->height; y++)
@@ -62,12 +65,6 @@ int	display_image(t_map *map, t_graph *graph)
 					return (1);
 				x += 32;
 			}
-			else if (map->map[line][raw] == map->pos_init)
-			{
-				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
-					return (1);
-				x += 32;
-			}
 			if (map->map[line][raw + 1] == '\0')
 			{
 				x = 0;
@@ -79,6 +76,41 @@ int	display_image(t_map *map, t_graph *graph)
 	}
 	return (0);
 }
+
+int	display_perso(t_map *map, t_graph *graph)
+{
+	int	line;
+	int	raw;
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	line = 0;
+	while (map->map[line] && line < map->index_m)
+	{
+		raw = 0;
+		while (map->map[line][raw] && raw < map->len_m)
+		{
+			if (map->map[line][raw] == map->pos_init)
+			{
+				printf("line %d & raw %d\n", line, raw);
+				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
+					return (1);
+			}
+			x += 32;
+			if (map->map[line][raw + 1] == '\0')
+			{
+				x = 0;
+				y += 32;
+			}
+			raw++;
+		}
+		line++;
+	}
+	return (0);
+}
+
 
 int	ft_mlx(t_map *map, t_texture *text)
 {
@@ -96,7 +128,7 @@ int	ft_mlx(t_map *map, t_texture *text)
 	if (!param->graph->img_1 || !param->graph->img_0)
 		return (1);
 	param->graph->img_p = mlx_new_image(param->graph->mlx, 8, 8);
-	if (display_image(map, param->graph))
+	if (display_image(map, param->graph) || display_perso(map, param->graph))
 		return (1);
 	mlx_loop_hook(param->graph->mlx, hook, param);
 	mlx_loop(param->graph->mlx);
