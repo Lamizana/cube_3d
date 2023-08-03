@@ -45,24 +45,24 @@ int	display_image(t_map *map, t_graph *graph)
 	x = 0;
 	y = 0;
 	line = 0;
-	while (line < 11)
+	while (map->map[line] && line < map->index_m)
 	{
 		raw = 0;
-		while (raw < 10)
+		while (map->map[line][raw] && raw < map->len_m)
 		{
-			if(map->map[line][raw] == '1')
+			if (map->map[line][raw] == '1' || map->map[line][raw] == ' ')
 			{
 				if (mlx_image_to_window(graph->mlx, graph->img_1, x, y) < 0)
 					return (1);
 				x += 32;
 			}
-			else if(map->map[line][raw] == '0')
+			else if (map->map[line][raw] == '0')
 			{
 				if (mlx_image_to_window(graph->mlx, graph->img_0, x, y) < 0)
 					return (1);
 				x += 32;
 			}
-			else if(map->map[line][raw] == 'P')
+			else if (map->map[line][raw] == map->pos_init)
 			{
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
@@ -84,6 +84,8 @@ int	ft_mlx(t_map *map, t_texture *text)
 {
 	t_param	*param;
 
+	for(int i = 0; i < map->index_m; i++)
+		printf("----%s-----\n", map->map[i]);
 	param = init_param(map, text);
 	param->graph->mlx = mlx_init(map->index_m * BLOCK, \
 			map->len_m * BLOCK, "Cub3D", true);
@@ -94,7 +96,8 @@ int	ft_mlx(t_map *map, t_texture *text)
 	if (!param->graph->img_1 || !param->graph->img_0)
 		return (1);
 	param->graph->img_p = mlx_new_image(param->graph->mlx, 8, 8);
-	display_image(map, param->graph);
+	if (display_image(map, param->graph))
+		return (1);
 	mlx_loop_hook(param->graph->mlx, hook, param);
 	mlx_loop(param->graph->mlx);
 	mlx_terminate(param->graph->mlx);
