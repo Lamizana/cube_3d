@@ -1,4 +1,5 @@
 #include "../include/cub3d.h"
+#include <unistd.h>
 
 int	main(int argc, char **argv)
 {

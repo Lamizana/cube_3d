@@ -21,26 +21,17 @@ void	hook(void *parameter)
 	// creation image pour les 0:
 	for (x = 0; x < param->graph->img_0->width; x++)
 		for(y= 0; y < param->graph->img_0->height; y++)
-			mlx_put_pixel(param->graph->img_0, x , y ,createRGBA(param->text->f[0], param->text->f[1], param->text->f[2], 255));
+			mlx_put_pixel(param->graph->img_0, x , y, createRGBA(param->text->f[0], param->text->f[1], param->text->f[2], 255));
 	// creation image pour la position du perso:
 	for (x = 0; x < param->graph->img_p->width; x++)
 		for(y= 0; y < param->graph->img_p->height; y++)
 			mlx_put_pixel(param->graph->img_p, x, y, rand() % RAND_MAX);
-	// deplace le perso:
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_UP))
-		param->graph->img_p->instances[0].y -= 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_DOWN))
-		param->graph->img_p->instances[0].y += 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_LEFT))
-		param->graph->img_p->instances[0].x -= 5;
-	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_RIGHT))
-		param->graph->img_p->instances[0].x += 5;
-
+	move_minimap(param->graph);
 	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_ESCAPE))
 		 mlx_close_window(param->graph->mlx);
 }
 
-static void	minimap_newline(int *x, int *y, char map)
+static void	minimap_newline(int *x, int *y, char map, int *raw)
 {
 	*x += 32;
 	if (map == '\0')
@@ -48,6 +39,7 @@ static void	minimap_newline(int *x, int *y, char map)
 		*x = 0;
 		*y += 32;
 	}
+	*raw = *raw + 1;
 }
 
 int	display_image(t_map *map, t_graph *graph)
@@ -72,8 +64,7 @@ int	display_image(t_map *map, t_graph *graph)
 				|| map->map[line][raw] == map->pos_init)
 				if (mlx_image_to_window(graph->mlx, graph->img_0, x, y) < 0)
 					return (1);
-			minimap_newline(&x, &y, map->map[line][raw + 1]);
-			raw++;
+			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
 		line++;
 	}
@@ -98,14 +89,12 @@ int	display_perso(t_map *map, t_graph *graph)
 			if (map->map[line][raw] == map->pos_init)
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
-			minimap_newline(&x, &y, map->map[line][raw + 1]);
-			raw++;
+			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
 		line++;
 	}
 	return (0);
 }
-
 
 int	ft_mlx(t_map *map, t_texture *text)
 {

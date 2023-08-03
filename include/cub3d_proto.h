@@ -39,5 +39,6 @@ int		msg_character(int character);
 /********************* GRAPHIC ********************/
 
 int		ft_mlx(t_map *map, t_texture *text);
+void	move_minimap(t_graph *graph);
 
 #endif
