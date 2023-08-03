@@ -1,9 +1,11 @@
 #include "../../include/cub3d.h"
+
 unsigned long createRGBA(int r, int g, int b, int a)
 {   
     return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8)
            + (a & 0xff);
 }
+
 void	hook(void *parameter)
 {
 	t_param		*param;
@@ -38,6 +40,16 @@ void	hook(void *parameter)
 		 mlx_close_window(param->graph->mlx);
 }
 
+static void	minimap_newline(int *x, int *y, char map)
+{
+	*x += 32;
+	if (map == '\0')
+	{
+		*x = 0;
+		*y += 32;
+	}
+}
+
 int	display_image(t_map *map, t_graph *graph)
 {
 	int	line;
@@ -54,22 +66,13 @@ int	display_image(t_map *map, t_graph *graph)
 		while (map->map[line][raw] && raw < map->len_m)
 		{
 			if (map->map[line][raw] == '1')
-			{
 				if (mlx_image_to_window(graph->mlx, graph->img_1, x, y) < 0)
 					return (1);
-				x += 32;
-			}
-			else if (map->map[line][raw] == '0' || map->map[line][raw] == ' ')
-			{
+			if (map->map[line][raw] == '0'
+				|| map->map[line][raw] == map->pos_init)
 				if (mlx_image_to_window(graph->mlx, graph->img_0, x, y) < 0)
 					return (1);
-				x += 32;
-			}
-			if (map->map[line][raw + 1] == '\0')
-			{
-				x = 0;
-				y += 32;
-			}
+			minimap_newline(&x, &y, map->map[line][raw + 1]);
 			raw++;
 		}
 		line++;
@@ -93,17 +96,9 @@ int	display_perso(t_map *map, t_graph *graph)
 		while (map->map[line][raw] && raw < map->len_m)
 		{
 			if (map->map[line][raw] == map->pos_init)
-			{
-				printf("line %d & raw %d\n", line, raw);
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
-			}
-			x += 32;
-			if (map->map[line][raw + 1] == '\0')
-			{
-				x = 0;
-				y += 32;
-			}
+			minimap_newline(&x, &y, map->map[line][raw + 1]);
 			raw++;
 		}
 		line++;
