@@ -50,13 +50,13 @@ int	display_image(t_map *map, t_graph *graph)
 		raw = 0;
 		while (map->map[line][raw] && raw < map->len_m)
 		{
-			if (map->map[line][raw] == '1' || map->map[line][raw] == ' ')
+			if (map->map[line][raw] == '1')
 			{
 				if (mlx_image_to_window(graph->mlx, graph->img_1, x, y) < 0)
 					return (1);
 				x += 32;
 			}
-			else if (map->map[line][raw] == '0')
+			else if (map->map[line][raw] == '0' || map->map[line][raw] == ' ')
 			{
 				if (mlx_image_to_window(graph->mlx, graph->img_0, x, y) < 0)
 					return (1);
