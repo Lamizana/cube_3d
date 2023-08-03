@@ -1,15 +1,15 @@
 NAME = cub3D 
 
-############ SOURCE #########################
+###################  SOURCE  ########################
 
-INIT :=			src/init/texture_init.c	\
-			src/init/init_param.c	\
+INIT :=			src/init/texture_init.c				\
+				src/init/init_param.c				\
 
 EXIT_CLEAR :=	src/exit_clear/close_map.c			\
 
 PARSING :=		src/parsing/parsing.c				\
 				src/parsing/parse_map.c				\
-				src/parsing/wall_around.c		\
+				src/parsing/wall_around.c			\
 				src/parsing/parse_texture.c			\
 				src/parsing/texture_cmds.c			\
 				src/parsing/texture_path.c			\
@@ -20,15 +20,16 @@ EXIT_CLEAR :=	src/exit_clear/close_map.c			\
 				
 ERROR :=		src/error/msg_err_parsing.c			\
 
-GRAPH :=		src/graphic/ft_mlx				\
+GRAPH :=		src/graphic/ft_mlx.c				\
 
 SRC = src/main.c									\
 		${INIT}										\
 		${PARSING}									\
 		${EXIT_CLEAR}								\
 		${ERROR}									\
+		${GRAPH}									\
 
-################## FLAGS #########################
+##################### FLAGS #########################
 
 FLAG = -Wall -Werror -Wextra -g
 
@@ -43,7 +44,7 @@ GREEN	= \033[38;5;76m
 ORANGE	= \033[38;5;11m
 
 %.o: %.c
-	@clang $(FLAG) $(FLAGMLX) -c $< -o $@
+	@clang $(FLAG) -c $< -o $@
 
 all: $(NAME)
 
@@ -58,12 +59,12 @@ $(NAME): $(OBJ)
 clean:
 	@rm -f $(OBJ)
 	@make clean -C libft -s && echo "$(YELLOW)object files cleaned"
-	@-make clean -C MLX42/build -s 
-
+	@-rm -f MLX42/build/libmlx42.a 
+	
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C libft -s && echo "$(RED)all clean"
-	@make fclean -C MLX42/build -s
+	@rm -f  MLX42/build/libmlx42.a 
 re: fclean all
 
 .PHONY : all clean fclean re

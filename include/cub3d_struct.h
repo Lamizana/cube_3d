@@ -34,7 +34,7 @@ typedef struct s_map
 
 typedef struct s_graph
 {
-	mlx_t		mlx;
+	mlx_t		*mlx;
 	mlx_image_t	*img_1;
 	mlx_image_t	*img_0;
 	mlx_image_t	*img_p;

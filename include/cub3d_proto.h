@@ -38,6 +38,6 @@ int		msg_character(int character);
 
 /********************* GRAPHIC ********************/
 
-void	ft_mlx(t_map *map, t_texture *text);
+int		ft_mlx(t_map *map, t_texture *text);
 
 #endif
