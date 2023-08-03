@@ -32,6 +32,6 @@ unsigned long	rgb_color(t_param *param)
 	unsigned long	rgb;
 
 	rgb = create_rgba(param->text->f[0], param->text->f[1],
-			param->text->f[2], 50);
+			param->text->f[2], 255);
 	return (rgb);
 }

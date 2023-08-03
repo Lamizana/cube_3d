@@ -22,6 +22,7 @@ ERROR :=		src/error/msg_err_parsing.c			\
 
 GRAPH :=		src/graphic/ft_mlx.c				\
 				src/graphic/create_img.c			\
+				src/graphic/move.c					\
 
 SRC = src/main.c									\
 		${INIT}										\

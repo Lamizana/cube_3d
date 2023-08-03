@@ -26,11 +26,13 @@ void	hook(void *parameter)
 	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_RIGHT))
 		param->graph->img_p->instances[0].x += 5;
 
+	// creation image pour la position du perso:
+	move_minimap(param->graph);
 	if (mlx_is_key_down(param->graph->mlx, MLX_KEY_ESCAPE))
 		 mlx_close_window(param->graph->mlx);
 }
 
-static void	minimap_newline(int *x, int *y, char map)
+static void	minimap_newline(int *x, int *y, char map, int *raw)
 {
 	*x += 32;
 	if (map == '\0')
@@ -38,6 +40,7 @@ static void	minimap_newline(int *x, int *y, char map)
 		*x = 0;
 		*y += 32;
 	}
+	*raw = *raw + 1;
 }
 
 int	display_image(t_map *map, t_graph *graph)
@@ -62,8 +65,7 @@ int	display_image(t_map *map, t_graph *graph)
 				|| map->map[line][raw] == map->pos_init)
 				if (mlx_image_to_window(graph->mlx, graph->img_0, x, y) < 0)
 					return (1);
-			minimap_newline(&x, &y, map->map[line][raw + 1]);
-			raw++;
+			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
 		line++;
 	}
@@ -88,14 +90,12 @@ int	display_perso(t_map *map, t_graph *graph)
 			if (map->map[line][raw] == map->pos_init)
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
-			minimap_newline(&x, &y, map->map[line][raw + 1]);
-			raw++;
+			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
 		line++;
 	}
 	return (0);
 }
-
 
 int	ft_mlx(t_map *map, t_texture *text)
 {
