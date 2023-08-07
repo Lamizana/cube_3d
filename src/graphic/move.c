@@ -28,10 +28,10 @@ void	move_minimap(t_graph *graph)
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_W))
 		graph->img_p->instances[0].y -= 1;
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_D))
-		graph->img_p->instances[0].y += 1;
+		graph->img_p->instances[0].x += 1;
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_A))
 		graph->img_p->instances[0].x -= 1;
-	if (mlx_is_key_down(graph->mlx, MLX_KEY_D))
-		graph->img_p->instances[0].x += 1;
+	if (mlx_is_key_down(graph->mlx, MLX_KEY_S))
+		graph->img_p->instances[0].y += 1;
 	cam_rot(graph);
 }

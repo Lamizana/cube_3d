@@ -15,6 +15,7 @@ void	hook(void *parameter)
 	
 	// creation image pour la position du perso:
 	create_img(param->graph->img_p, 0xFF00FFFF);
+	create_img(param->graph->img_v, 0xFF00FFFF);
 
 	// deplace le perso:
 	move_minimap(param->graph);
@@ -81,8 +82,13 @@ int	display_perso(t_map *map, t_graph *graph)
 		while (map->map[line][raw] && raw < map->len_m)
 		{
 			if (map->map[line][raw] == map->pos_init)
+			{
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
+				if (mlx_image_to_window(graph->mlx, graph->img_v, x, y) < 0)
+					return (1);
+
+			}
 			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
 		line++;
@@ -106,6 +112,7 @@ int	ft_mlx(t_map *map, t_texture *text)
 	if (!param->graph->img_1 || !param->graph->img_0)
 		return (1);
 	param->graph->img_p = mlx_new_image(param->graph->mlx, 8, 8);
+	param->graph->img_v = mlx_new_image(param->graph->mlx, 4, 4);
 	if (display_image(map, param->graph) || display_perso(map, param->graph))
 		return (1);
 	mlx_loop_hook(param->graph->mlx, hook, param);

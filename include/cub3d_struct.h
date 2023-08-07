@@ -38,6 +38,7 @@ typedef struct s_graph
 	mlx_image_t	*img_1;
 	mlx_image_t	*img_0;
 	mlx_image_t	*img_p;
+	mlx_image_t	*img_v;
 	float	dx; // delta x
 	float	dy; // delta y
 	float	pa; // angle of the player
