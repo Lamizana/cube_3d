@@ -86,9 +86,34 @@ int	display_perso(t_map *map, t_graph *graph)
 				if (mlx_image_to_window(graph->mlx, graph->img_p, x, y) < 0)
 					return (1);
 				x += (SIZE_P / 2 - SIZE_V / 2);
-				y += (SIZE_P / 2 - SIZE_V/ 2);
+				y += (SIZE_P / 2 - SIZE_V / 2);
+
 				if (mlx_image_to_window(graph->mlx, graph->img_v, x, y) < 0)
 					return (1);
+				if (map->pos_init == 'N')
+				{
+					graph->pa = M_PI / 2;
+					graph->img_v->instances[0].x = (cos(graph->pa) * 10) + graph->img_p->instances[0].x + (SIZE_P / 2 - SIZE_V / 2);
+					graph->img_v->instances[0].y = (sin(graph->pa) * 10) + graph->img_p->instances[0].y +  (SIZE_P / 2 - SIZE_V / 2);
+				}
+				else if (map->pos_init == 'S')
+				{
+					graph->pa = 3 * M_PI / 2;
+					graph->img_v->instances[0].x = (cos(graph->pa) * 10) + graph->img_p->instances[0].x + (SIZE_P / 2 - SIZE_V / 2);
+					graph->img_v->instances[0].y = (sin(graph->pa) * 10) + graph->img_p->instances[0].y +  (SIZE_P / 2 - SIZE_V / 2);
+				}
+				else if (map->pos_init == 'W')
+				{
+					graph->pa = M_PI;
+					graph->img_v->instances[0].x = (cos(graph->pa) * 10) + graph->img_p->instances[0].x + (SIZE_P / 2 - SIZE_V / 2);
+					graph->img_v->instances[0].y = (sin(graph->pa) * 10) + graph->img_p->instances[0].y +  (SIZE_P / 2 - SIZE_V / 2);
+				}
+				else if (map->pos_init == 'E')
+				{
+					graph->pa = 0;
+					graph->img_v->instances[0].x = (cos(graph->pa) * 10) + graph->img_p->instances[0].x + (SIZE_P / 2 - SIZE_V / 2);
+					graph->img_v->instances[0].y = (sin(graph->pa) * 10) + graph->img_p->instances[0].y +  (SIZE_P / 2 - SIZE_V / 2);
+				}
 			}
 			minimap_newline(&x, &y, map->map[line][raw + 1], &raw);
 		}
