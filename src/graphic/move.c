@@ -40,8 +40,11 @@ void	move_minimap(t_graph *graph)
 {
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_W))
 	{
-		graph->img_p->instances[0].y -= 1;
-		graph->img_v->instances[0].y -= 1;
+		//graph->img_p->instances[0].y -= 1;
+		graph->img_p->instances[0].x += (cos(graph->pa) * 5);
+		graph->img_p->instances[0].y += (sin(graph->pa) * 5);
+		graph->img_v->instances[0].x += (cos(graph->pa) * 5);
+		graph->img_v->instances[0].y += (sin(graph->pa) * 5);
 	}
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_D))
 	{
@@ -55,8 +58,13 @@ void	move_minimap(t_graph *graph)
 	}
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_S))
 	{
-		graph->img_p->instances[0].y += 1;
-		graph->img_v->instances[0].y += 1;
+		graph->img_p->instances[0].x -= (cos(graph->pa) * 5);
+		graph->img_p->instances[0].y -= (sin(graph->pa) * 5);
+		graph->img_v->instances[0].x -= (cos(graph->pa) * 5);
+		graph->img_v->instances[0].y -= (sin(graph->pa) * 5);
+
+		// graph->img_p->instances[0].y += 1;
+		// graph->img_v->instances[0].y += 1;
 	}
 	cam_rot(graph);
 }
