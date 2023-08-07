@@ -21,7 +21,18 @@
 
 # define WIDTH		512
 # define HEIGHT		512
+
+
+// ############  MLX MINIMAP  ############# //
+
 # define BLOCK		32
+# define SIZE_P		16
+# define SIZE_V		8
+# define SIZE_VY	16
+
+// ######## MLX MINIMAP COLOR ########### //
+
+
 
 // ############  MATH  ############# //
 
