@@ -7,6 +7,7 @@ void	cam_rot(t_graph *graph)
 		graph->pa += 0.05;
 		if (graph->pa > 2 * PI)
 			graph->pa -= 2 * PI;
+
 		graph->img_v->instances[0].x = (cos(graph->pa) * 5) + graph->img_p->instances[0].x + (SIZE_P / 2 - SIZE_V / 2);
 		graph->img_v->instances[0].y = (sin(graph->pa) * 5) + graph->img_p->instances[0].y + (SIZE_P / 2 - SIZE_V / 2);
 	}
