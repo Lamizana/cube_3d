@@ -25,17 +25,17 @@ void	move_minimap(t_graph *graph)
 {
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_W))
 	{
-		graph->img_p->instances[0].x += (cos(graph->pa) * 5) + 1;
-		graph->img_p->instances[0].y += (sin(graph->pa) * 5) + 1;
-		graph->img_v->instances[0].x += (cos(graph->pa) * 5)  + 1;
-		graph->img_v->instances[0].y += (sin(graph->pa) * 5)  + 1;
+		graph->img_p->instances[0].x += (cos(graph->pa) ) + 1;
+		graph->img_p->instances[0].y += (sin(graph->pa) ) + 1;
+		graph->img_v->instances[0].x += (cos(graph->pa) )  + 1;
+		graph->img_v->instances[0].y += (sin(graph->pa) )  + 1;
 	}
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_D))
 	{
-		graph->img_p->instances[0].x += (cos(graph->pa + M_PI / 2) * 5);//  + 1;
-		graph->img_p->instances[0].y += (sin(graph->pa + M_PI / 2) * 5);//  + 1;
-		graph->img_v->instances[0].x += (cos(graph->pa + M_PI / 2) * 5);//  + 1;
-		graph->img_v->instances[0].y += (sin(graph->pa + M_PI / 2) * 5);//  + 1;
+		graph->img_p->instances[0].x += (cos(graph->pa + M_PI / 2) ) + 1;
+		graph->img_p->instances[0].y += (sin(graph->pa + M_PI / 2) ) + 1;
+		graph->img_v->instances[0].x += (cos(graph->pa + M_PI / 2) ) + 1;
+		graph->img_v->instances[0].y += (sin(graph->pa + M_PI / 2) ) + 1;
 
 	}
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_A))
@@ -47,10 +47,10 @@ void	move_minimap(t_graph *graph)
 	}
 	if (mlx_is_key_down(graph->mlx, MLX_KEY_S))
 	{
-		graph->img_p->instances[0].x -= (cos(graph->pa) * 5);
-		graph->img_p->instances[0].y -= (sin(graph->pa) * 5);
-		graph->img_v->instances[0].x -= (cos(graph->pa) * 5);
-		graph->img_v->instances[0].y -= (sin(graph->pa) * 5);
+		graph->img_p->instances[0].x -= (cos(graph->pa) * 2);
+		graph->img_p->instances[0].y -= (sin(graph->pa) * 2);
+		graph->img_v->instances[0].x -= (cos(graph->pa) * 2);
+		graph->img_v->instances[0].y -= (sin(graph->pa) * 2);
 
 	}
 	cam_rot(graph);
