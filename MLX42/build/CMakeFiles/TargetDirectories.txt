@@ -1,7 +1,7 @@
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/mlx42.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/edit_cache.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/rebuild_cache.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/list_install_components.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/install.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/install/local.dir
-/nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/build/CMakeFiles/install/strip.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/mlx42.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/edit_cache.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/rebuild_cache.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/list_install_components.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/install.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/install/local.dir
+/nfs/homes/nminotte/Documents/student/cub3d/MLX42/build/CMakeFiles/install/strip.dir

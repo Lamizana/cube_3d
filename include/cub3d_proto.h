@@ -41,7 +41,8 @@ int		msg_character(int character);
 int		ft_mlx(t_map *map, t_texture *text);
 void	move_minimap(t_graph *graph);
 void	cam_rot(t_graph *graph);
-
+void	create_line(mlx_image_t *img, uint32_t color);
+void	circle_of_character(mlx_image_t *img, uint32_t color);
 void	create_img(mlx_image_t *img, uint32_t color);
 unsigned long	rgb_color(t_param *param);
 

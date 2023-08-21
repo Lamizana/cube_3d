@@ -1,6 +1,6 @@
 CMakeFiles/mlx42.dir/lib/png/lodepng.c.o: \
-  /nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/lib/png/lodepng.c \
-  /nfs/homes/alamizan/Documents/cursus/cercle_4/cube_3D/MLX42/include/lodepng/lodepng.h \
+  /nfs/homes/nminotte/Documents/student/cub3d/MLX42/lib/png/lodepng.c \
+  /nfs/homes/nminotte/Documents/student/cub3d/MLX42/include/lodepng/lodepng.h \
   /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h /usr/include/features-time64.h \

@@ -44,20 +44,38 @@ typedef struct s_graph
 	float	pa; // angle of the player
 }	t_graph;
 
-// typedef struct s_camera
-// {
-	// float	px; // position x
-	// float	py;	// position x
-	// float	dx; // delta x
-	// float	dy; // delta y
-	// float	pa; // angle of the player
-// }	t_cam;
+typedef struct s_camera
+{
+	float	px; // position x
+	float	py;	// position x
+	float	dx; // direction x
+	float	dy; // direction y
+	float	pa; // angle of the player
+	double	plane_x;
+	double	plane_y;
+}	t_cam;
+
+typedef struct s_raycasting
+{
+	int		r;
+	int		mx;
+	int		my;
+	int		mp;
+	int		depth_of_field;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+	float	tan_a;
+}	t_ray;
 
 typedef struct s_param
 {
 	t_texture	*text;
 	t_map		*map;
 	t_graph		*graph;
+	t_cam		*cam;
 }	t_param;
 
 #endif

@@ -27,8 +27,8 @@
 
 # define BLOCK		32
 # define SIZE_P		16
-# define SIZE_V		8
-# define SIZE_VY	16
+# define SIZE_V		42
+# define SIZE_VY	3
 
 // ######## MLX MINIMAP COLOR ########### //
 
@@ -37,5 +37,6 @@
 // ############  MATH  ############# //
 
 # define PI		3.14159265359
+# define RADIUS		40
 
 #endif
