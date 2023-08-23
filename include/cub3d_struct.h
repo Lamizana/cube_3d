@@ -39,18 +39,20 @@ typedef struct s_graph
 	mlx_image_t	*img_0;
 	mlx_image_t	*img_p;
 	mlx_image_t	*img_v;
-	float	dx; // delta x
-	float	dy; // delta y
-	float	pa; // angle of the player
 }	t_graph;
 
 typedef struct s_camera
 {
-	float	px; // position x
+	float	fov;
+	float	px;	// position x
 	float	py;	// position x
-	float	dx; // direction x
-	float	dy; // direction y
-	float	pa; // angle of the player
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
+	float	dx;	// direction x
+	float	dy;	// direction y
+	float	pa;	// angle of the player
 	double	plane_x;
 	double	plane_y;
 }	t_cam;

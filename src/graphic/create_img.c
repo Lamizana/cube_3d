@@ -1,4 +1,5 @@
 #include "../../include/cub3d.h"
+#include <stdlib.h>
 
 void	create_img(mlx_image_t *img, uint32_t color)
 {
@@ -55,9 +56,39 @@ void	circle_of_character(mlx_image_t *img, uint32_t color)
 	}
 }
 
-void	create_line(mlx_image_t *img, uint32_t color)
+void	dda(t_cam *cam, mlx_image_t *img, uint32_t color)
 {
-	int	i;
+	int		i;
+	float	x;
+	float	y;
+	float	step;
+ 
+	printf("cam- x 2 %lf \t y %lf", cam->x2, cam->y2);
+	if (fabs(cam->x2 - cam->x1) >= fabs(cam->y2 - cam->y1))
+		step = fabs(cam->x2 - cam->x1);
+	else
+		step = fabs(cam->y2 - cam->y1);
+	printf("------------------step %lf ---------------------\n", step);
+	cam->dx = (cam->x2 - cam->x1) / step;
+	cam->dy = (cam->y2 - cam->y1) / step;
+	x = cam->x1;
+	y = cam->y1;
+	i = 0;
+	while (i <= step)
+	{
+
+		printf("X %lf\t y  %lf \n", x ,y );
+		mlx_put_pixel(img, x, y, color);
+		x += cam->dx;
+		y += cam->dy;
+		i++;	
+	}
+}
+
+void	create_line(mlx_image_t *img, t_param *param, uint32_t color)
+{
+	t_cam	*cam;
+/*	int	i;
 	int	j;
 
 	i = 0;
@@ -71,6 +102,35 @@ void	create_line(mlx_image_t *img, uint32_t color)
 			j++;
 		}
 		i++;
+	}*/ 
+	cam = param->cam;
+	cam->px = param->graph->img_p->instances[0].x; 
+	cam->py = param->graph->img_p->instances[0].y;
+	cam->x1 = cam->px;
+	cam->y1 = cam->py;
+	if (param->map->pos_init == 'N')
+	{
+		cam->pa = PI / 2;
+		cam->x2 = (cos(cam->pa)) + 32 + cam->px;
+		cam->y2 = (sin(cam->pa)) + 32 + cam->py;
 	}
+	else if (param->map->pos_init == 'S')
+	{
+		cam->pa = 3 * PI / 2;
+		cam->x2 = cos(cam->pa)+ 32  + cam->px;
+		cam->y2 = sin(cam->pa)+ 32  + cam->py;
+	}
+	else if (param->map->pos_init == 'W')
+	{
+		cam->pa = PI;
+		cam->x2 =  cos(cam->pa) + 32 + cam->px;
+		cam->y2 = sin(cam->pa) + 32 + cam->py;
+	} 
+	else if (param->map->pos_init == 'E')
+	{
+		cam->pa = 0;
+		cam->x2 = (cos(cam->pa)) + cam->px;
+		cam->y2 = (sin(cam->pa)) + cam->py;
+	}
+	dda(cam, img, color);
 }
-
