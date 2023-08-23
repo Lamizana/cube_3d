@@ -61,12 +61,21 @@ void	create_line(mlx_image_t *img, uint32_t color)
 	int	j;
 
 	i = 0;
+	// if (map->pos_init == 'N')
+		// graph->pa = M_PI / 2;
+	// else if (map->pos_init == 'S')
+		// graph->pa = 3 * M_PI / 2;
+	// else if (map->pos_init == 'W')
+		// graph->pa = M_PI;
+	// else if (map->pos_init == 'E')
+		// graph->pa = 0;
+	// DDA
+
 	while ((unsigned)i < img->width)
 	{
 		j = 0;
 		while ((unsigned)j < img->height)
 		{
-
 			mlx_put_pixel(img, i, j, color);
 			j++;
 		}

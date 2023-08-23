@@ -21,13 +21,14 @@
 
 # define WIDTH		512
 # define HEIGHT		512
-
+# define MOVE_SPEED	0.1
+# define ROT_SPEED	0.03
 
 // ############  MLX MINIMAP  ############# //
 
 # define BLOCK		32
 # define SIZE_P		16
-# define SIZE_V		42
+# define SIZE_V		16
 # define SIZE_VY	3
 
 // ######## MLX MINIMAP COLOR ########### //
@@ -37,6 +38,5 @@
 // ############  MATH  ############# //
 
 # define PI		3.14159265359
-# define RADIUS		40
 
 #endif
