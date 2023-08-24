@@ -28,7 +28,7 @@ int	open_map(char *file, t_map *map)
 	return (0);
 }
 
-int	parsing(char *file, t_texture *texture, t_map *map)
+int	parsing(char *file, t_param *param)
 {
 	int	ret_text;
 	int	nb_line;
@@ -36,14 +36,14 @@ int	parsing(char *file, t_texture *texture, t_map *map)
 	ret_text = 0;
 	if (check_extension(file))
 		return (1);
-	if (open_map(file, map))
+	if (open_map(file, param->map))
 		return (1);
-	nb_line = parse_texture(texture, map->fd_map, &ret_text);
+	nb_line = parse_texture(param->text, param->map->fd_map, &ret_text);
 	if (ret_text == -1)
-		close_map(texture, map);
-	if (open_map(file, map))
+		close_map(param);
+	if (open_map(file, param->map))
 		return (1);
-	if (parse_map(map, ret_text, nb_line))
-		close_map(texture, map);
+	if (parse_map(param->map, ret_text, nb_line))
+		close_map(param);
 	return (0);
 }

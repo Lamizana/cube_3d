@@ -4,7 +4,7 @@
 # include "cub3d.h"
 
 /********************* PARSING *********************/
-int		parsing(char *file, t_texture *texture, t_map *map);
+int		parsing(char *file, t_param *param);
 int		parse_map(t_map *map, int l_to_start, int nb_line);
 int		wall_around_map(t_map *map, int index_max);
 
@@ -21,14 +21,16 @@ int		strcmp_texture(char **cmds, int i);
 char	**trim_and_split(char *line, char *set_trim, char c2_split);
 
 /**************** INITIALIZATION **************************/
-void	init_texture(t_texture *texture);
-t_param	*init_param(t_map *map, t_texture *text);
+t_param		*init_param(void);
+t_texture	*init_texture(void);
+t_map		*init_map(t_param *param);
+t_ray		*init_raycasting(t_param *param);
 
 /***************** CLOSE AND EXIT *****************/
-void	close_map(t_texture *text, t_map *map);
+void	close_map(t_param *param);
 void	close_texture(t_texture *text, int flag);
 void	close_strucmap(t_map *map);
-void	close_param(t_param *param);
+void	close_parameter(t_param *param);
 
 /********************* ERROR **********************/
 int		msg_invalid_char(char c);
@@ -38,12 +40,7 @@ int		msg_character(int character);
 
 /********************* GRAPHIC ********************/
 
-int		ft_mlx(t_map *map, t_texture *text);
-void	move_minimap(t_graph *graph);
-void	cam_rot(t_graph *graph);
-void	create_line(mlx_image_t *img, uint32_t color);
-void	circle_of_character(mlx_image_t *img, uint32_t color);
-void	create_img(mlx_image_t *img, uint32_t color);
+int		ft_mlx(t_param *param);
 unsigned long	rgb_color(t_param *param);
 
 #endif

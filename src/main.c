@@ -1,23 +1,31 @@
 #include "../include/cub3d.h"
-#include <unistd.h>
 
-int	main(int argc, char **argv)
+int check_argc(int argc)
 {
-	t_texture	*texture;
-	t_map		*map;
-
-	texture = malloc (sizeof(t_texture));
-	init_texture(texture);
-	map = ft_calloc(1, sizeof(t_map));
 	if (argc != 2)
 	{
 		ft_putendl_fd("Error\nPrecise your map, please", 2);
-		close_map(texture, map);
+		return (1);
 	}
-	if (parsing(argv[1], texture, map) == 1)
-		close_map(texture, map);
-	ft_mlx(map, texture);
-	close_strucmap(map);
-	close_texture(texture, 0);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_param	*param;
+
+	if (check_argc(argc) == 1)
+		return (1);
+
+	param = init_param();
+	if (parsing(argv[1], param) == 1)
+		close_map(param);
+	param->ray = init_raycasting(param);
+	// int	i;
+	// i = 0;
+	// while(param->map->map[i] != NULL)
+		// printf("%s\n", param->map->map[i++]);
+	ft_mlx(param);
+	close_parameter(param);
 	return (0);
 }

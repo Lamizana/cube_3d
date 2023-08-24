@@ -19,8 +19,8 @@
 
 // ############  MLX  ############# //
 
-# define WIDTH		512
-# define HEIGHT		512
+# define WIDTH		1080
+# define HEIGHT		720
 
 
 // ############  MLX MINIMAP  ############# //
