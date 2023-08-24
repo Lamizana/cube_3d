@@ -42,5 +42,6 @@ int		msg_character(int character);
 
 int		ft_mlx(t_param *param);
 unsigned long	rgb_color(t_param *param);
+void	hook_3d(void *parameter);
 
 #endif

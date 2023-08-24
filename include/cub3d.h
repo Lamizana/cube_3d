@@ -9,7 +9,7 @@
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "cub3d_struct.h"
-# include "cub3d_proto.h"
 # include "cub3d_define.h"
+# include "cub3d_proto.h"
 
 #endif

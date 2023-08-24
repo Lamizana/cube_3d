@@ -15,6 +15,7 @@ typedef struct s_texture
 }	t_texture;
 
 /* ************************************************************************** */
+
 typedef struct s_map
 {
 	int		fd_map;
