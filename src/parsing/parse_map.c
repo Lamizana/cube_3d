@@ -28,9 +28,9 @@ static int	parse_fill_check(t_map *map, char *line, int index)
 	return (check);
 }
 
-static int	init_map(t_map *map, int nb_line)
+static int	init_mappemonde(t_map *map, int nb_line)
 {
-	map->map = calloc((nb_line + 1), sizeof(char *));
+	map->map = ft_calloc((nb_line + 1), sizeof(char *));
 	if (!map->map)
 	{
 		ft_putendl_fd("Error\nappend with a malloc", 2);
@@ -48,7 +48,7 @@ int	parse_map(t_map *map, int l_to_start, int nb_line)
 	i = 0;
 	check = 0;
 	map->index_m = nb_line - l_to_start;
-	if (init_map(map, map->index_m))
+	if (init_mappemonde(map, map->index_m))
 		return (1);
 	while (1)
 	{

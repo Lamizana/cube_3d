@@ -19,10 +19,9 @@
 
 // ############  MLX  ############# //
 
-# define WIDTH		512
-# define HEIGHT		512
-# define MOVE_SPEED	0.1
-# define ROT_SPEED	0.03
+# define WIDTH		1080
+# define HEIGHT		720
+
 
 // ############  MLX MINIMAP  ############# //
 

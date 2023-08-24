@@ -14,6 +14,8 @@ typedef struct s_texture
 	int		f[3];
 }	t_texture;
 
+/* ************************************************************************** */
+
 typedef struct s_map
 {
 	int		fd_map;
@@ -24,59 +26,63 @@ typedef struct s_map
 	char	pos_init;
 }	t_map;
 
-typedef struct s_graph
+/* ************************************************************************** */
+typedef struct s_ray
 {
 	mlx_t		*mlx;
-	int			width;
-	int			heigth;
-	mlx_image_t	*img_1;
-	mlx_image_t	*img_0;
-	mlx_image_t	*img_p;
-	mlx_image_t	*img_v;
+	mlx_image_t	*img;
 
-	float	pa; // angle of the player
-}	t_graph;
+	int		h;			// hauteur en pixel de lecran
+	int		w;			// largeur en pixel de lecran
+	int		index;		// nb de pixel dans la colonne a afficher
+	double	pos_x;		// position x de depart
+	double	pos_y;		// position y de depart
 
-typedef struct s_camera
-{
-	double	px; // position x
-	double	py; // position x
-	double	dir_x; // direction x
-	double	dir_y; // direction y
-	double	pa; // angle of the player
-	double	plane_x;
-	double	plane_y;
-	double	delta_x; // delta x
-	double	delta_y; // delta y
-}	t_cam;
+	double	camera_x;	// coordonnée x dans l'espace caméra
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dir_x;		// vecteur x direction joueur
+	double	dir_y;		// vecteur y direction joueur
 
-typedef struct s_raycasting
-{
-	// int		r;
-	int		mx;	// mapX
-	int		my;	// mapY
-	// int		mp;
-	// int		depth_of_field;
-	float	rx;
-	float	ry;
-	float	ra;
-	// float	xo;
-	// float	yo;
-	float	tan_a;
-	int	side;
-	double	side_dist_x;
+	double	old_dir_x;
+	double	old_plan_x;
+
+	double	plane_x;	// plan camera x du joueur
+	double	plane_y; 	// plan camera y du joueur
+
+	double	time;		// trame courante
+	double	old_time;	// trame precedente
+
+	double	side_dist_x;// longeur du rayon de la pos actuel au cote x ou y
 	double	side_dist_y;
+	double	perp_wall_dist;
+
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	distance;
+	int		step_x; 	// direction ou aller (x ou y)
+	int		step_y;
+
+	int		hit;		// mur touche
+	int		side;		// mur NS ou EW touche
+
+	int		map_x;		// emplacement x sur la carte
+	int		map_y;		// emplacement y sur la carte
+
+	int		line_height;// hauteur de la ligne vertical qui doit etre tracer
 	int		draw_start; // depart y put_pixel
 	int		draw_end;	// fin y put_pixel
+
+	uint32_t color;		// colors en hexadecimal
+
+	int		x;
 }	t_ray;
 
+/* ************************************************************************** */
 typedef struct s_param
 {
 	t_texture	*text;
 	t_map		*map;
-	t_graph		*graph;
-	t_cam		*cam;
 	t_ray		*ray;
 }	t_param;
-
 #endif
